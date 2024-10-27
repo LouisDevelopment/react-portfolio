@@ -8,6 +8,10 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": {
+  "node": ">=20",
+  "npm": ">=8"
+},
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@tsparticles/react": "^3.0.0",
