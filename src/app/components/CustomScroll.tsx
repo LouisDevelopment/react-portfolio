@@ -35,11 +35,11 @@ const CustomScroll: React.FC = () => {
         }
     };
 
-    const handleResize = () => {
-        setIsAboveXs(window.innerWidth >= 768);
-    };
 
     useEffect(() => {
+        const handleResize = () => {
+            setIsAboveXs(window.innerWidth >= 768);
+        };
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach(entry => {
