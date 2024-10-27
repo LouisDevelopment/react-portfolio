@@ -5,7 +5,6 @@ import emailjs from '@emailjs/browser'
 import React, {ReactNode, useEffect, useMemo, useState} from "react";
 import Particles, { initParticlesEngine} from "@tsparticles/react";
 import {
-  type Container,
   type ISourceOptions,
   MoveDirection,
   OutMode,
@@ -22,7 +21,7 @@ import AnimatedButton from "@/app/components/AnimatedButton";
 import { motion } from "framer-motion";
 
 export default function Home() {
-  const contactRef = useRef<HTMLDivElement | null>(null);;
+  const contactRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToContact = () => {
     contactRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -88,6 +87,9 @@ export default function Home() {
         // starting from v2 you can add only the features you need reducing the bundle size
         //await loadAll(engine);
         //await loadFull(engine);
+        if(selectedProject){
+
+        }
         await loadSlim(engine);
         //await loadBasic(engine);
       }).then(() => {
@@ -95,7 +97,7 @@ export default function Home() {
       });
     }, []);
 
-    const particlesLoaded = async (container?: Container): Promise<void> => {
+    const particlesLoaded = async (): Promise<void> => {
 
     };
     const options: ISourceOptions = useMemo(
@@ -198,11 +200,6 @@ export default function Home() {
                 <AnimatedText text="Louis Braidwood"/>
                 <Subtitle subtitle="Passionate about all things game, software and web development"></Subtitle>
                 <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-
-                  <Link href="/projects"
-                        className="select-none inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-full bg-indigo-700 hover:bg-indigo-600 focus:ring-5 focus:ring-indigo-900 dark:focus:ring-indigo-900">
-                    Projects
-                  </Link>
                   <Link
                       href="https://docs.google.com/document/d/1sDIcDwmlkOf2Qq-nimRUbnTzN3r6b22tJUZo7GRcZZ0/edit?tab=t.0"
                       target="_blank"
@@ -247,7 +244,7 @@ export default function Home() {
         <div id="3">
           <Section className="bg-gray-800 w-screen flex flex-col lg:flex-row lg:justify-center" title="" content="">
             <div className="flex flex-col w-screen lg:flex-row">
-              <AnimatedButton className=""/>
+              <AnimatedButton label="" className=""/>
               <div className="h-[50vh] lg:h-screen lg:w-[50vw] flex flex-col justify-start items-center lg:justify-center lg:items-start">
                 <h2 className="text-4xl pb-2 border-b-2 border-slate-600 lg:w-[80%]">Projects</h2>
                 <ul className="w-[80%] text-left">
@@ -258,7 +255,7 @@ export default function Home() {
                   >
                     <li className="listItem">
                       <p className="xl:pl-8 pl-2 pr-2 text-sm xl:text-base">Draw Dojo</p>
-                      <p className="xl:pr-8 pl-2 pr-2 text-sm xl:text-base">Front-End</p>
+                      <p className="xl:pr-8 pl-2 pr-2 text-sm xl:text-base">Front-End (Team)</p>
                     </li>
                   </motion.div>
                   <motion.div
@@ -268,7 +265,7 @@ export default function Home() {
                   >
                     <li className="listItem">
                       <p className="xl:pl-8 pl-2 pr-2 text-sm xl:text-base">Patient Record Viewer</p>
-                      <p className="xl:pr-8 pl-2 pr-2 text-sm xl:text-base">Full-Stack</p>
+                      <p className="xl:pr-8 pl-2 pr-2 text-sm xl:text-base">Full-Stack (Team)</p>
                     </li>
                   </motion.div>
                   <motion.div
