@@ -8,7 +8,7 @@ const CustomScroll: React.FC = () => {
     const isScrolling = useRef(false);
     const [isAboveXs, setIsAboveXs] = useState(window.innerWidth >= 768);
 
-    const handleWheel = (event) => {
+    const handleWheel = (event: WheelEvent) => {
         if (event.ctrlKey) {
             return;
         }
