@@ -16,7 +16,7 @@ const AnimatedButton: React.FC<{ label: string, className: string}> = ({ label, 
             >
 
                 <div className="w-[100%] h-[100%] text-white font-semibold relative overflow-hidden flex lg:items-center justify-center">
-                    <button className="bg-violet-400 w-[80%] aspect-square text-white  font-semibold rounded-[22%] relative overflow-hidden">
+                    <button className="bg-violet-400 w-[80%] mb-8 aspect-square text-white  font-semibold rounded-[22%] relative overflow-hidden">
                         {label}
                     </button>
                 </div>
