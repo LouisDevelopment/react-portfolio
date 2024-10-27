@@ -1,0 +1,11 @@
+.active{
+    @apply outline-4 outline-amber-400 bg-indigo-400 rounded-full hover:bg-indigo-500;
+}
+
+.link {
+    @apply cursor-pointer hover:text-gray-400 md:px-3 px-2 py-1;
+}
+
+.icon {
+    @apply size-2 fill-white my-2 mx-2;
+}
