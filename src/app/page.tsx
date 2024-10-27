@@ -27,7 +27,7 @@ export default function Home() {
     contactRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  let selectedProject=1;
+  const [selectedProject, setSelectedProject] = useState<number>(1);
 
   function initEmail() {
     emailjs.init({
@@ -45,6 +45,11 @@ export default function Home() {
     })
   }
 
+  const handleProjectLIClick = (id: number) => {
+    console.log(id)
+    setSelectedProject(id);
+  }
+
   // Handler to disable text selection on mouse down
   const handleMouseDown = () => {
     document.body.style.userSelect = 'none';
@@ -54,6 +59,15 @@ export default function Home() {
   const handleMouseUp = () => {
     document.body.style.userSelect = 'auto';
   };
+
+  const projects = [
+    { id: 1, label: 'Patient Record Viewer', type: "Full-Stack (Team)"},
+    { id: 2, label: 'Portobello Driver Training', type: "Full-Stack (Independent)" },
+    { id: 3, label: 'Lost Bonds (Game)', type: "C#/Unity (Independent)" },
+    { id: 4, label: 'Survival Game Concept', type: "Java/LWJGL (Independent)" },
+    { id: 5, label: 'Procedural Generator', type: "Java (University)" },
+    { id: 6, label: 'Draw Dojo (Discontinued)', type: "Front-End (Team)" },
+  ];
 
   interface CardProps {
     title: string;
@@ -186,7 +200,7 @@ export default function Home() {
   return (
       <div className={`bg-gray-800`}>
         <div id="1">
-          <Section className="py-16" title="" content="">
+          <Section className="" title="" content="">
             <section
                 className="bg-center h-screen bg-no-repeat flex justify-center items-center bg-blend-multiply">
               <div
@@ -244,60 +258,26 @@ export default function Home() {
         <div id="3">
           <Section className="min-h-screen bg-gray-800 w-screen flex flex-col lg:flex-row lg:justify-center" title="" content="">
             <div className="flex flex-col w-screen lg:flex-row">
-              <AnimatedButton label="" className=""/>
+              <AnimatedButton selectedProject={selectedProject} label="" className=""/>
               <div className=" lg:h-screen lg:w-[50vw] flex flex-col justify-start items-center lg:justify-center lg:items-start">
                 <h2 className="lg:text-4xl pb-2 border-b-2 border-slate-600 lg:w-[80%]">Projects</h2>
                 <ul className="w-[80%] text-left">
-                  <motion.div
-                      whileHover={{scaleX: 1.05, background: "#1c2634"}}
-                      onHoverStart={() => selectedProject = 1}
-                      whileTap={{scaleX: 0.95}}
-                  >
-                    <li className="listItem">
-                      <p className="xl:pl-8 pl-2 pr-2 text-sm xl:text-base">Draw Dojo</p>
-                      <p className="xl:pr-8 pl-2 pr-2 text-sm xl:text-base">Front-End (Team)</p>
-                    </li>
-                  </motion.div>
-                  <motion.div
-                      whileHover={{scaleX: 1.05, background: "#1c2634"}}
-                      onHoverStart={() => selectedProject = 1}
-                      whileTap={{scaleX: 0.95}}
-                  >
-                    <li className="listItem">
-                      <p className="xl:pl-8 pl-2 pr-2 text-sm xl:text-base">Patient Record Viewer</p>
-                      <p className="xl:pr-8 pl-2 pr-2 text-sm xl:text-base">Full-Stack (Team)</p>
-                    </li>
-                  </motion.div>
-                  <motion.div
-                      whileHover={{scaleX: 1.05, background: "#1c2634"}}
-                      onHoverStart={() => selectedProject = 1}
-                      whileTap={{scaleX: 0.95}}
-                  >
-                    <li className="listItem">
-                      <p className="xl:pl-8 pl-2 pr-2 text-sm xl:text-base">Portobello Driver Training</p>
-                      <p className="xl:pr-8 pl-2 pr-2 text-sm xl:text-base">Full-Stack (Independent)</p>
-                    </li>
-                  </motion.div>
-                  <motion.div
-                      whileHover={{scaleX: 1.05, background: "#1c2634"}}
-                      onHoverStart={() => selectedProject = 1}
-                      whileTap={{scaleX: 0.95}}
-                  >
-                    <li className="listItem">
-                      <p className="xl:pl-8 pl-2 pr-2 text-sm xl:text-base">Survival Game</p>
-                      <p className="xl:pr-8 pl-2 pr-2 text-sm xl:text-base">Java/LWJGL (Independent)</p>
-                    </li>
-                  </motion.div>
-                  <motion.div
-                      whileHover={{scaleX: 1.05, background: "#1c2634"}}
-                      onHoverStart={() => selectedProject = 1}
-                      whileTap={{scaleX: 0.95}}
-                  >
-                    <li className="listItem">
-                      <p className="xl:pl-8 pl-2 pr-2 text-sm xl:text-base">Procedural Generator</p>
-                      <p className="xl:pr-8 pl-2 pr-2 text-sm xl:text-base">Java (University)</p>
-                    </li>
-                  </motion.div>
+                  {projects.map((item) => (
+                      <motion.div
+                          key={item.id}
+                          whileHover={{scaleX: 1.05, background: "#1c2634"}}
+                          onClick={() => handleProjectLIClick(item.id)}
+                          whileTap={{scaleX: 0.95}}
+                      >
+                        <li className={`flex justify-between py-3 border-y-2 -mt-0.5 border-slate-600 md:py-4 ${selectedProject === item.id ? 'bg-slate-700 ' : ''}`} key={item.id}
+
+                            >
+                          <p className="xl:pl-8 pl-2 pr-2 text-sm xl:text-base">{item.label}</p>
+                          <p className="xl:pr-8 pl-2 pr-2 text-sm xl:text-base">{item.type}</p>
+                        </li>
+                      </motion.div>
+                  ))}
+
                   <li className="border border-b-1 -mt-0.5 border-slate-600"/>
                 </ul>
               </div>
@@ -311,7 +291,7 @@ export default function Home() {
                 <Card className="max-w-[812px]" title="Contact" footer="">
                   <div ref={contactRef} className="mx-auto md:max-w-[650em]">
                     <form onSubmit={sendEmail}>
-                      <div className="-mx-3 flex flex-wrap">
+                    <div className="-mx-3 flex flex-wrap">
                         <div className="w-full px-3 sm:w-1/2">
                           <div className="mb-5">
                             <label
