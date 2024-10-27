@@ -13,7 +13,7 @@ import SectionContent from './SectionContent';
 const Section: React.FC<SectionProps> = ({ title, content , children, className}) => {
     return (
         <motion.div
-            className={`flex flex-col items-center justify-center h-screen p-8 text-white ${className}`}
+            className={`flex flex-col items-center justify-center text-white ${className}`}
             initial={{ opacity: 0}}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -21,7 +21,7 @@ const Section: React.FC<SectionProps> = ({ title, content , children, className}
         >
             <h2 className="text-4xl font-bold mb-4">{title}</h2>
             <SectionContent text={content}/>
-            <div>{children}</div>
+            <div className="w-full h-full">{children}</div>
         </motion.div>
     );
 };

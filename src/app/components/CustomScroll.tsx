@@ -6,11 +6,15 @@ const sections = ['1', '2', '3', '4'];
 const CustomScroll: React.FC = () => {
     const [activeId, setActiveId] = useState<string>('1');
     const isScrolling = useRef(false);
+    const [isAboveXs, setIsAboveXs] = useState(window.innerWidth >= 768);
 
-    const handleWheel = (event: WheelEvent) => {
-        event.preventDefault();
+    const handleWheel = (event) => {
+        if (event.ctrlKey) {
+            return;
+        }
         if (isScrolling.current) return; // Prevent multiple calls while scrolling
-
+        if(!isAboveXs) return;
+        event.preventDefault();
         isScrolling.current = true;
 
         if (event.deltaY > 0) {
@@ -29,6 +33,10 @@ const CustomScroll: React.FC = () => {
                 element.scrollIntoView({ behavior: 'smooth' });
             }
         }
+    };
+
+    const handleResize = () => {
+        setIsAboveXs(window.innerWidth >= 768);
     };
 
     useEffect(() => {
@@ -50,8 +58,14 @@ const CustomScroll: React.FC = () => {
             if (element) observer.observe(element);
         });
 
-        // Cleanup observer on unmount
-        return () => observer.disconnect();
+        window.addEventListener('resize', handleResize);
+
+        // Clean up the event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            // Cleanup observer on unmount
+            observer.disconnect();
+        }
     }, []);
 
     useEffect(() => {
@@ -60,9 +74,13 @@ const CustomScroll: React.FC = () => {
     }, [activeId]);
 
     return (
-        <div>
-            <Navigation activeId={activeId} setActiveId={setActiveId}/>
-        </div>
+        <>
+            {isAboveXs ? (
+                <div>
+                    <Navigation activeId={activeId} setActiveId={setActiveId}/>
+                </div>
+            ) : null}
+        </>
     );
 };
 

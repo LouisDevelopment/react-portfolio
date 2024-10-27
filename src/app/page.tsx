@@ -63,11 +63,11 @@ export default function Home() {
   }
   const Card: React.FC<CardProps> = ({ title, footer, children, className}) => {
     return (
-        <div className={`shadow m-4 bg-slate-800 rounded-2xl text-slate-200 ${className}`}>
-          {title && (<div className="pt-8 text-xl">
+        <div className={`shadow w-[100%] m-4 bg-slate-800 rounded-2xl text-slate-200 ${className}`}>
+          {title && (<div className="pt-2 md:pt-8 md:text-xl">
             <h2 className={`text-center`}>{title}</h2>
           </div>)}
-          <div className="px-8 py-6">
+          <div className="px-2 md:px-8 py-2 md:py-6">
             {children}
           </div>
           {footer && <div className="px-8 pb-6 text-right">{footer}</div>}
@@ -184,9 +184,9 @@ export default function Home() {
   }
   initEmail();
   return (
-      <div className={`bg-slate-900`}>
+      <div className={`bg-gray-800`}>
         <div id="1">
-          <Section className="" title="" content="">
+          <Section className="py-16" title="" content="">
             <section
                 className="bg-center h-screen bg-no-repeat flex justify-center items-center bg-blend-multiply">
               <div
@@ -216,10 +216,10 @@ export default function Home() {
           </Section>
         </div>
         <div id="2">
-          <Section className="bg-slate-700" title="" content="">
-            <section className="bg-slate-700 md:p-32 lg:p-64">
+          <Section className="h-screen bg-slate-700" title="" content="">
+            <section className="bg-slate-700 md:px-32 lg:px-64">
                 <div className="flex items-center justify-center">
-                  <Card className="" title="About Me" footer="">
+                  {/*<Card className="" title="About Me" footer="">
                     <p>
                       I started programming when I was 11, making video games in Java at first, and then branching out
                       into
@@ -236,17 +236,17 @@ export default function Home() {
                       called
                       Counter-Strike.
                     </p>
-                  </Card>
+                  </Card>*/}
                 </div>
             </section>
           </Section>
         </div>
         <div id="3">
-          <Section className="bg-gray-800 w-screen flex flex-col lg:flex-row lg:justify-center" title="" content="">
+          <Section className="min-h-screen bg-gray-800 w-screen flex flex-col lg:flex-row lg:justify-center" title="" content="">
             <div className="flex flex-col w-screen lg:flex-row">
               <AnimatedButton label="" className=""/>
-              <div className="h-[50vh] lg:h-screen lg:w-[50vw] flex flex-col justify-start items-center lg:justify-center lg:items-start">
-                <h2 className="text-4xl pb-2 border-b-2 border-slate-600 lg:w-[80%]">Projects</h2>
+              <div className=" lg:h-screen lg:w-[50vw] flex flex-col justify-start items-center lg:justify-center lg:items-start">
+                <h2 className="lg:text-4xl pb-2 border-b-2 border-slate-600 lg:w-[80%]">Projects</h2>
                 <ul className="w-[80%] text-left">
                   <motion.div
                       whileHover={{scaleX: 1.05, background: "#1c2634"}}
@@ -305,11 +305,11 @@ export default function Home() {
           </Section>
         </div>
         <div id="4">
-          <Section className="bg-slate-700" title="" content="">
-            <section className="bg-slate-700">
-              <div className="flex items-center justify-center">
-                <Card className="" title="Contact" footer="">
-                  <div ref={contactRef} className="mx-auto md:max-w-[650px]">
+          <Section className="min-h-screen bg-slate-700" title="" content="">
+            <section className="w-full h-full">
+              <div className="w-full h-full flex items-center justify-center">
+                <Card className="max-w-[812px]" title="Contact" footer="">
+                  <div ref={contactRef} className="mx-auto md:max-w-[650em]">
                     <form onSubmit={sendEmail}>
                       <div className="-mx-3 flex flex-wrap">
                         <div className="w-full px-3 sm:w-1/2">
@@ -366,7 +366,6 @@ export default function Home() {
             </section>
           </Section>
         </div>
-
 
         <CustomScroll/>
       </div>

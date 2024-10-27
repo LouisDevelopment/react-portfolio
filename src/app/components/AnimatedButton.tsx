@@ -5,7 +5,7 @@ import './AnimatedButton.css'
 const AnimatedButton: React.FC<{ label: string, className: string}> = ({ label, className }) => {
     const [isHovered, setIsHovered] = useState(false);
     return (
-        <div className="flex w-screen mt-[25vh] h-[50vh] lg:h-[100vh] lg:mt-0 lg:w-[50vw] justify-center">
+        <div className="flex w-screen h-[50vh] lg:h-[100vh] lg:mt-0 lg:w-[50vw] justify-center">
             <motion.div
                 className={`flex flex-col h-[100%] w-[100%] rounded-[22%] justify-end lg:justify-center ${className}`}
                 onHoverStart={() => setIsHovered(true)}

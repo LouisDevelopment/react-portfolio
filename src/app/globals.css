@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
+  @apply overflow-x-hidden md:overflow-y-hidden;
   --background: #ffffff;
   --foreground: #171717;
-  overflow-y:hidden;
 }
 
 @media (prefers-color-scheme: dark) {
