@@ -17,7 +17,7 @@ const Navigation: React.FC<NavigationProps> = ({activeId, setActiveId}) => {
     };
 
     return (
-        <nav className="fixed flex text-white items-center w-screen justify-center top-10 md:flex-col md:right-4 z-50 md:h-screen md:w-32">
+        <nav className="fixed flex text-white items-center w-screen justify-center top-10 lg:flex-col lg:right-4 z-50 lg:h-screen lg:w-32">
             <Link
                 activeClass="active"
                 to="1"

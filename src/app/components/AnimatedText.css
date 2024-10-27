@@ -1,5 +1,5 @@
 .animated-text {
-    @apply fill-transparent stroke-white font-light mb-4 text-6xl leading-none text-white;
+    @apply fill-transparent stroke-white font-light mb-4 text-6xl leading-none text-white select-none;
     stroke-width: 1;
     stroke-dasharray: 2000;
     stroke-dashoffset: 2000;

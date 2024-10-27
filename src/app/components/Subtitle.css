@@ -1,4 +1,5 @@
 .bounce-word {
+    @apply select-none;
     display: inline; /* Allow words to wrap */
     opacity: 0;
     transform: translateY(20px) scale(0.8); /* Start below and smaller */

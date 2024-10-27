@@ -20,3 +20,7 @@ body {
   background: var(--background);
   font-family: Roboto, sans-serif;
 }
+
+.listItem{
+  @apply flex justify-between py-3 border-y-2 -mt-0.5 border-slate-600 md:py-4;
+}

@@ -16,8 +16,10 @@ import { useRef } from 'react';
 import AnimatedText from './components/AnimatedText';
 import Subtitle from './components/Subtitle';
 
-import Navigation from './components/Navigation';
 import Section from './components/Section';
+import CustomScroll from "@/app/components/CustomScroll";
+import AnimatedButton from "@/app/components/AnimatedButton";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const contactRef = useRef<HTMLDivElement | null>(null);;
@@ -26,39 +28,8 @@ export default function Home() {
     contactRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const sections = [
-      '1',
-      '2',
-      '3',
-      '4'
-  ]
+  let selectedProject=1;
 
-  const [activeId, setActiveId] = useState<string>('1');
-
-  const handleWheel = (event: WheelEvent) => {
-    // Prevent the default scroll behavior if needed
-    event.preventDefault();
-    console.log(event.deltaY > 0 ? 'Scrolling down' : 'Scrolling up');
-
-    // Check the deltaY property to determine the scroll direction
-    if (event.deltaY > 0) {
-
-      const element = document.getElementById(sections[parseInt(activeId)%4])
-      if(element)
-        element.scrollIntoView({ behavior: 'smooth'});
-      setActiveId(sections[parseInt(activeId)%4]);
-    } else {
-      let x = parseInt(activeId);
-      if(x == 1){
-        x = 5
-      }
-      const element = document.getElementById(sections[x - 2])
-      console.log(element)
-      if(element)
-        element.scrollIntoView({ behavior: 'smooth'});
-      setActiveId(sections[x - 2]);
-    }
-  };
   function initEmail() {
     emailjs.init({
       publicKey: "YozxMjPkPiXwVD_ZJ",
@@ -74,6 +45,16 @@ export default function Home() {
       console.log("FAILED...", error)
     })
   }
+
+  // Handler to disable text selection on mouse down
+  const handleMouseDown = () => {
+    document.body.style.userSelect = 'none';
+  };
+
+  // Handler to re-enable text selection on mouse up
+  const handleMouseUp = () => {
+    document.body.style.userSelect = 'auto';
+  };
 
   interface CardProps {
     title: string;
@@ -101,8 +82,6 @@ export default function Home() {
     // this should be run only once per application lifetime
     useEffect(() => {
 
-      window.addEventListener('wheel', handleWheel, { passive: false });
-
       initParticlesEngine(async (engine) => {
         // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
         // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
@@ -114,11 +93,6 @@ export default function Home() {
       }).then(() => {
         setInit(true);
       });
-
-      // Cleanup function to remove the event listener
-      return () => {
-        window.removeEventListener('wheel', handleWheel);
-      };
     }, []);
 
     const particlesLoaded = async (container?: Container): Promise<void> => {
@@ -206,34 +180,37 @@ export default function Home() {
       );
     }
   }
-
   initEmail();
   return (
       <div className={`bg-slate-900`}>
-
-        <Navigation activeId={activeId} setActiveId={setActiveId}/>
         <div id="1">
           <Section className="" title="" content="">
             <section
                 className="bg-center h-screen bg-no-repeat flex justify-center items-center bg-blend-multiply">
-              <ParticleEngine/>
+              <div
+                  onMouseUp={handleMouseUp}>
+                <div
+                    onMouseDown={handleMouseDown}>
+                    <ParticleEngine />
+                </div>
+              </div>
               <div className="z-10 px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
                 <AnimatedText text="Louis Braidwood"/>
                 <Subtitle subtitle="Passionate about all things game, software and web development"></Subtitle>
                 <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
 
                   <Link href="/projects"
-                        className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-full bg-indigo-700 hover:bg-indigo-600 focus:ring-5 focus:ring-indigo-900 dark:focus:ring-indigo-900">
+                        className="select-none inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-full bg-indigo-700 hover:bg-indigo-600 focus:ring-5 focus:ring-indigo-900 dark:focus:ring-indigo-900">
                     Projects
                   </Link>
                   <Link
                       href="https://docs.google.com/document/d/1sDIcDwmlkOf2Qq-nimRUbnTzN3r6b22tJUZo7GRcZZ0/edit?tab=t.0"
                       target="_blank"
-                      className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-full bg-indigo-700 hover:bg-indigo-600 focus:ring-5 focus:ring-indigo-900 dark:focus:ring-indigo-900">
+                      className="select-none inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-full bg-indigo-700 hover:bg-indigo-600 focus:ring-5 focus:ring-indigo-900 dark:focus:ring-indigo-900">
                     My CV
                   </Link>
                   <button onClick={scrollToContact}
-                          className="inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 text-base font-medium text-center text-white rounded-full border border-white hover:bg-gray-100 focus:ring-5 focus:ring-indigo-500">
+                          className="select-none inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 text-base font-medium text-center text-white rounded-full border border-white hover:bg-gray-100 focus:ring-5 focus:ring-indigo-500">
                     Contact
                   </button>
                 </div>
@@ -243,48 +220,99 @@ export default function Home() {
         </div>
         <div id="2">
           <Section className="bg-slate-700" title="" content="">
-            <section className="bg-slate-700 p-16">
-              <div className="flex flex-col items-center justify-center  text-center">
-                <Card className="max-w-[800px]" title="About Me" footer="">
-                  <p>
-                    I started programming when I was 11, making video games in Java at first, and then branching out
-                    into
-                    more
-                    languages,
-                    and working on larger, more varied projects. <br/>
-                    <br/>I’ve always known I wanted to be in software or game development, and once I graduated,
-                    I immediately landed a job at Voror Health Technologies as a Software Engineer where I have grown
-                    and
-                    picked up essential skills that you can
-                    only get by working in a professional development team. <br/>
-                    <br/> In my free time I like gaming and I used to compete at an amateur level in a game series
-                    called
-                    Counter-Strike.
-                  </p>
-                </Card>
-                <Card title={`Work`} className="max-w-[800px]" footer="">
-                  I am now a full time software developer at Voror Health Technologies, a company commited to improving
-                  the
-                  landscape of medical data and making it easy to understand through their Discovery Data System. They
-                  currently store the data of over 38 million patient records throughout London, working with over 850
-                  GP
-                  practices within the region.
-                </Card>
-              </div>
+            <section className="bg-slate-700 md:p-32 lg:p-64">
+                <div className="flex items-center justify-center">
+                  <Card className="" title="About Me" footer="">
+                    <p>
+                      I started programming when I was 11, making video games in Java at first, and then branching out
+                      into
+                      more
+                      languages,
+                      and working on larger, more varied projects. <br/>
+                      <br/>I’ve always known I wanted to be in software or game development, and once I graduated,
+                      I immediately landed a job at Voror Health Technologies as a Software Engineer where I have
+                      grown
+                      and
+                      picked up essential skills that you can
+                      only get by working in a professional development team. <br/>
+                      <br/> In my free time I like gaming and I used to compete at an amateur level in a game series
+                      called
+                      Counter-Strike.
+                    </p>
+                  </Card>
+                </div>
             </section>
           </Section>
         </div>
         <div id="3">
-          <Section className="bg-gray-800" title="Section 3" content="You're now in Section 3.">
-            Projects
+          <Section className="bg-gray-800 w-screen flex flex-col lg:flex-row lg:justify-center" title="" content="">
+            <div className="flex flex-col w-screen lg:flex-row">
+              <AnimatedButton className=""/>
+              <div className="h-[50vh] lg:h-screen lg:w-[50vw] flex flex-col justify-start items-center lg:justify-center lg:items-start">
+                <h2 className="text-4xl pb-2 border-b-2 border-slate-600 lg:w-[80%]">Projects</h2>
+                <ul className="w-[80%] text-left">
+                  <motion.div
+                      whileHover={{scaleX: 1.05, background: "#1c2634"}}
+                      onHoverStart={() => selectedProject = 1}
+                      whileTap={{scaleX: 0.95}}
+                  >
+                    <li className="listItem">
+                      <p className="xl:pl-8 pl-2 pr-2 text-sm xl:text-base">Draw Dojo</p>
+                      <p className="xl:pr-8 pl-2 pr-2 text-sm xl:text-base">Front-End</p>
+                    </li>
+                  </motion.div>
+                  <motion.div
+                      whileHover={{scaleX: 1.05, background: "#1c2634"}}
+                      onHoverStart={() => selectedProject = 1}
+                      whileTap={{scaleX: 0.95}}
+                  >
+                    <li className="listItem">
+                      <p className="xl:pl-8 pl-2 pr-2 text-sm xl:text-base">Patient Record Viewer</p>
+                      <p className="xl:pr-8 pl-2 pr-2 text-sm xl:text-base">Full-Stack</p>
+                    </li>
+                  </motion.div>
+                  <motion.div
+                      whileHover={{scaleX: 1.05, background: "#1c2634"}}
+                      onHoverStart={() => selectedProject = 1}
+                      whileTap={{scaleX: 0.95}}
+                  >
+                    <li className="listItem">
+                      <p className="xl:pl-8 pl-2 pr-2 text-sm xl:text-base">Portobello Driver Training</p>
+                      <p className="xl:pr-8 pl-2 pr-2 text-sm xl:text-base">Full-Stack (Independent)</p>
+                    </li>
+                  </motion.div>
+                  <motion.div
+                      whileHover={{scaleX: 1.05, background: "#1c2634"}}
+                      onHoverStart={() => selectedProject = 1}
+                      whileTap={{scaleX: 0.95}}
+                  >
+                    <li className="listItem">
+                      <p className="xl:pl-8 pl-2 pr-2 text-sm xl:text-base">Survival Game</p>
+                      <p className="xl:pr-8 pl-2 pr-2 text-sm xl:text-base">Java/LWJGL (Independent)</p>
+                    </li>
+                  </motion.div>
+                  <motion.div
+                      whileHover={{scaleX: 1.05, background: "#1c2634"}}
+                      onHoverStart={() => selectedProject = 1}
+                      whileTap={{scaleX: 0.95}}
+                  >
+                    <li className="listItem">
+                      <p className="xl:pl-8 pl-2 pr-2 text-sm xl:text-base">Procedural Generator</p>
+                      <p className="xl:pr-8 pl-2 pr-2 text-sm xl:text-base">Java (University)</p>
+                    </li>
+                  </motion.div>
+                  <li className="border border-b-1 -mt-0.5 border-slate-600"/>
+                </ul>
+              </div>
+            </div>
           </Section>
         </div>
         <div id="4">
           <Section className="bg-slate-700" title="" content="">
-            <section className="bg-slate-700 p-16">
+            <section className="bg-slate-700">
               <div className="flex items-center justify-center">
                 <Card className="" title="Contact" footer="">
-                  <div ref={contactRef} className="mx-auto w-full max-w-[550px]">
+                  <div ref={contactRef} className="mx-auto md:max-w-[650px]">
                     <form onSubmit={sendEmail}>
                       <div className="-mx-3 flex flex-wrap">
                         <div className="w-full px-3 sm:w-1/2">
@@ -343,6 +371,7 @@ export default function Home() {
         </div>
 
 
+        <CustomScroll/>
       </div>
   );
 }
