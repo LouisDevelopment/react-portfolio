@@ -6,7 +6,7 @@ const sections = ['1', '2', '3', '4'];
 const CustomScroll: React.FC = () => {
     const [activeId, setActiveId] = useState<string>('1');
     const isScrolling = useRef(false);
-    const [isAboveXs, setIsAboveXs] = useState(window.innerWidth >= 768);
+    const [isAboveXs, setIsAboveXs] = useState(true);
 
     const handleWheel = (event: WheelEvent) => {
         if (event.ctrlKey) {
