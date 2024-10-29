@@ -50,48 +50,53 @@ interface AnimatedButtonProps {
 const AnimatedButton: React.FC<AnimatedButtonProps> = ({ className, selectedProject, onExpanded}) => {
     const [isHovered, setIsHovered] = useState(false);
     const [expanded, setExpanded] = useState(false);
-
-    const animateDiv = useCallback(() => {
-        if(isHovered) {
-            if(expanded) {
-                if(window.innerWidth < 1024)
-                    return { scaleY: 0.98, translateY: -8 }
-                else
-                    return { scaleX: 0.98, translateX: -8 }
-            }
-            if(window.innerWidth < 1024)
-                return { scaleY: 1.03, translateY: 8 }
-            else
-                return { scaleX: 1.03, translateX: 8 }
-        } else {
-            if(window.innerWidth < 1024)
-                return { y: 0, scaleY: 1}
-            else
-                return { x: 0, scaleX: 1}
-        }
-    }, [isHovered, expanded])
-
-    const tappedDiv = useCallback(() => {
-        if(expanded) {
-            if(window.innerWidth < 1024)
-                return {scaleY: 0.96, translateY: -12}
-            else
-                return {scaleX: 0.96, translateX: -12}
-        } else {
-            if(window.innerWidth < 1024)
-                return {scaleY: 1.06, translateY: 12};
-            else
-                return {scaleX: 1.06, translateX: 12};
-        }
-    }, [expanded])
+    const [windowWidth, setWindowWidth] = useState<number>(1920);
 
     useEffect(() => {
-
+        setWindowWidth(window.innerWidth)
+        // Update window width on resize
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener("resize", handleResize);
         // Trigger the callback when `expanded` changes
         if (onExpanded) {
             onExpanded(expanded);
         }
+        return () => window.removeEventListener("resize", handleResize);
     }, [expanded, onExpanded]);
+
+    const animateDiv = () => {
+        if(isHovered) {
+            if(expanded) {
+                if(windowWidth < 1024)
+                    return { scaleY: 0.98, translateY: -8 }
+                else
+                    return { scaleX: 0.98, translateX: -8 }
+            }
+            if(windowWidth < 1024)
+                return { scaleY: 1.03, translateY: 8 }
+            else
+                return { scaleX: 1.03, translateX: 8 }
+        } else {
+            if(windowWidth < 1024)
+                return { y: 0, scaleY: 1}
+            else
+                return { x: 0, scaleX: 1}
+        }
+    }
+
+    const tappedDiv = () => {
+        if(expanded) {
+            if(windowWidth < 1024)
+                return {scaleY: 0.96, translateY: -12}
+            else
+                return {scaleX: 0.96, translateX: -12}
+        } else {
+            if(windowWidth < 1024)
+                return {scaleY: 1.06, translateY: 12};
+            else
+                return {scaleX: 1.06, translateX: 12};
+        }
+    }
 
     return (
         <div className={`flex w-screen lg:h-[100vh] lg:mt-0 align-middle items-center justify-center ${expanded ? 'min-h-[90vh] w-[85vw] lg:w-[80vw]' : 'h-[40vh] lg:w-[50vw]'}`}>

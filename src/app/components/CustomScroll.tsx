@@ -8,38 +8,37 @@ const CustomScroll: React.FC = () => {
     const isScrolling = useRef(false);
     const [isAboveXs, setIsAboveXs] = useState(true);
 
-    const handleWheel = (event: WheelEvent) => {
-        if (event.ctrlKey) {
-            return;
-        }
-
-        if (isScrolling.current) return; // Prevent multiple calls while scrolling
-        if(!isAboveXs) return;
-        event.preventDefault();
-        isScrolling.current = true;
-
-        if (event.deltaY > 0) {
-            // Scroll down
-            const nextIndex = (parseInt(activeId) % sections.length);
-            const element = document.getElementById(sections[nextIndex]);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
-        } else {
-            // Scroll up
-            let previousIndex = parseInt(activeId) - 2;
-            if (previousIndex < 0) previousIndex = sections.length - 1;
-            const element = document.getElementById(sections[previousIndex]);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    };
-
 
     useEffect(() => {
         const handleResize = () => {
             setIsAboveXs(window.innerWidth >= 768);
+        };
+        const handleWheel = (event: WheelEvent) => {
+            if (event.ctrlKey) {
+                return;
+            }
+
+            if (isScrolling.current) return; // Prevent multiple calls while scrolling
+            if(!isAboveXs) return;
+            event.preventDefault();
+            isScrolling.current = true;
+
+            if (event.deltaY > 0) {
+                // Scroll down
+                const nextIndex = (parseInt(activeId) % sections.length);
+                const element = document.getElementById(sections[nextIndex]);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                // Scroll up
+                let previousIndex = parseInt(activeId) - 2;
+                if (previousIndex < 0) previousIndex = sections.length - 1;
+                const element = document.getElementById(sections[previousIndex]);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
         };
         const observer = new IntersectionObserver(
             (entries) => {
@@ -69,7 +68,7 @@ const CustomScroll: React.FC = () => {
             observer.disconnect();
         }
 
-    }, [activeId, handleWheel]);
+    }, [activeId]);
 
     return (
         <>
