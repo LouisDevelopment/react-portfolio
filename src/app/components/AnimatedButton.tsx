@@ -109,11 +109,11 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ className, selectedProj
             >
 
                 <div className={`w-[100%] h-[100%] text-white overflow-hidden flex flex-row items-center justify-center `}>
-                    <button className={`bg-blue-400 h-[90%] lg:h-[80%] flex-col flex items-center justify-center ${expanded ? 'lg:justify-start' : 'lg:justify-center'} py-2 lg:flex-row lg:px-8 mb-8 text-white font-semibold rounded-3xl overflow-hidden
+                    <button
+                        className={`bg-blue-400 h-[90%] lg:h-[80%] flex-col flex items-center justify-center ${expanded ? 'lg:justify-start' : 'lg:justify-center'} py-2 lg:flex-row lg:px-8 mb-8 text-white font-semibold rounded-3xl overflow-hidden
                     ${expanded ? 'aspect-auto w-[100%]' : 'aspect-square'}`}>
-                        <div
-                            onClick={() => setExpanded(!expanded)}
-                            className={` ${expanded ? 'w-[60%] lg:w-[50%]' : 'lg:w-full flex flex-row justify-center items-center align-middle'}`}>
+                        <div onClick={() => setExpanded(!expanded)}
+                            className={` ${expanded ? 'h-full w-[60%] lg:w-[50%]' : 'h-full lg:w-full '} flex flex-row justify-center items-center align-middle`}>
                             <img className={`justify-self-center w-[80%]`} src={`${projects[selectedProject-1].imgURLs[0]}`}/>
                         </div>
                         <div className={`cursor-default ${expanded ? 'flex flex-col lg:w-[50%] h-full p-4' : 'hidden'}`}>
