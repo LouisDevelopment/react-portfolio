@@ -68,7 +68,7 @@ const CustomScroll: React.FC = () => {
             window.removeEventListener('wheel', handleWheel);
             observer.disconnect();
         }
-    }, [[activeId, handleWheel]]);
+    }, [activeId, handleWheel]);
 
     return (
         <>
