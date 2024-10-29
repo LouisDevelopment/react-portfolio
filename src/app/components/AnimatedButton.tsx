@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import { motion } from 'framer-motion';
 import './AnimatedButton.css'
 
@@ -51,7 +51,7 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ className, selectedProj
     const [isHovered, setIsHovered] = useState(false);
     const [expanded, setExpanded] = useState(false);
 
-    function animateDiv(){
+    const animateDiv = useCallback(() => {
         if(isHovered) {
             if(expanded) {
                 if(window.innerWidth < 1024)
@@ -69,16 +69,9 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ className, selectedProj
             else
                 return { x: 0, scaleX: 1}
         }
-    }
+    }, [isHovered, expanded])
 
-    useEffect(() => {
-        // Trigger the callback when `expanded` changes
-        if (onExpanded) {
-            onExpanded(expanded);
-        }
-    }, [expanded, onExpanded]);
-
-    function tappedDiv(){
+    const tappedDiv = useCallback(() => {
         if(expanded) {
             if(window.innerWidth < 1024)
                 return {scaleY: 0.96, translateY: -12}
@@ -90,7 +83,16 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ className, selectedProj
             else
                 return {scaleX: 1.06, translateX: 12};
         }
-    }
+    }, [expanded])
+
+    useEffect(() => {
+
+        // Trigger the callback when `expanded` changes
+        if (onExpanded) {
+            onExpanded(expanded);
+        }
+    }, [expanded, onExpanded]);
+
     return (
         <div className={`flex w-screen lg:h-[100vh] lg:mt-0 align-middle items-center justify-center ${expanded ? 'min-h-[90vh] w-[85vw] lg:w-[80vw]' : 'h-[40vh] lg:w-[50vw]'}`}>
             <motion.div
