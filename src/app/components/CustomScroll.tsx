@@ -71,7 +71,7 @@ const CustomScroll: React.FC = () => {
     useEffect(() => {
         window.addEventListener('wheel', handleWheel, { passive: false });
         return () => window.removeEventListener('wheel', handleWheel);
-    }, [activeId]);
+    }, [activeId, handleWheel]);
 
     return (
         <>
