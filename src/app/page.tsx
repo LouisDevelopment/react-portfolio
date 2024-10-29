@@ -19,15 +19,23 @@ import Section from './components/Section';
 import CustomScroll from "@/app/components/CustomScroll";
 import AnimatedButton from "@/app/components/AnimatedButton";
 import { motion } from "framer-motion";
+import ExpandableTextArea from "@/app/components/MapPinText";
 
 export default function Home() {
   const contactRef = useRef<HTMLDivElement | null>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [aboutExpandedId, setAboutExpandedId] = useState<number | null>(null);
+  const [selectedProject, setSelectedProject] = useState<number>(1);
 
   const scrollToContact = () => {
     contactRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const [selectedProject, setSelectedProject] = useState<number>(1);
+
+  // Function to toggle the expanded state of a component
+  const handleAboutExpand = (id: number) => {
+    setAboutExpandedId(aboutExpandedId === id ? null : id);
+  };
 
   function initEmail() {
     emailjs.init({
@@ -87,6 +95,11 @@ export default function Home() {
           {footer && <div className="px-8 pb-6 text-right">{footer}</div>}
         </div>
     );
+  };
+
+  const handleExpandedChange = (newExpandedValue: boolean) => {
+    console.log("Expanded state changed:", newExpandedValue);
+    setIsExpanded(newExpandedValue);
   };
 
   const ParticleEngine = () => {
@@ -202,7 +215,7 @@ export default function Home() {
         <div id="1">
           <Section className="" title="" content="">
             <section
-                className="bg-center h-screen bg-no-repeat flex justify-center items-center bg-blend-multiply">
+                className="bg-center min-h-screen bg-no-repeat flex justify-center items-center bg-blend-multiply">
               <div
                   onMouseUp={handleMouseUp}>
                 <div
@@ -212,7 +225,7 @@ export default function Home() {
               </div>
               <div className="z-10 px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
                 <AnimatedText text="Louis Braidwood"/>
-                <Subtitle subtitle="Passionate about all things game, software and web development"></Subtitle>
+                <Subtitle subtitle="Passionate about all things game, software and web development"/>
                 <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
                   <Link
                       href="https://docs.google.com/document/d/1sDIcDwmlkOf2Qq-nimRUbnTzN3r6b22tJUZo7GRcZZ0/edit?tab=t.0"
@@ -229,39 +242,48 @@ export default function Home() {
             </section>
           </Section>
         </div>
-        <div id="2">
-          <Section className="h-screen bg-slate-700" title="" content="">
-            <section className="bg-slate-700 md:px-32 lg:px-64">
-                <div className="flex items-center justify-center">
-                  {/*<Card className="" title="About Me" footer="">
-                    <p>
-                      I started programming when I was 11, making video games in Java at first, and then branching out
-                      into
-                      more
-                      languages,
-                      and working on larger, more varied projects. <br/>
-                      <br/>I’ve always known I wanted to be in software or game development, and once I graduated,
-                      I immediately landed a job at Voror Health Technologies as a Software Engineer where I have
-                      grown
-                      and
-                      picked up essential skills that you can
-                      only get by working in a professional development team. <br/>
-                      <br/> In my free time I like gaming and I used to compete at an amateur level in a game series
-                      called
-                      Counter-Strike.
-                    </p>
-                  </Card>*/}
-                </div>
+        <div id="2" className="p-0 m-0">
+          <Section className="h-screen w-screen bg-slate-700 p-0 m-0 -z-10" title="" content="">
+            <section className="h-screen flex flex-col justify-between py-8 pb-16">
+              <div className="h-screen flex flex-col align-middle items-center justify-between">
+                  <ExpandableTextArea
+                      isExpanded={aboutExpandedId === 0}
+                      onExpand={() => handleAboutExpand(0)} text="I grew up in a rural part of Scotland but always loved gaming,
+                         which led me to start programming in Game Maker Studio when I got my first computer in 2014 (Age 12)." expandDirection="right"/>
+                  <ExpandableTextArea
+                      isExpanded={aboutExpandedId === 1}
+                      onExpand={() => handleAboutExpand(1)} text="Later I moved on to learning Java, and building my own game engines with LWJGL, and even later I tried some web development,
+                        C++ and Unity (C#)." expandDirection="left"/>
+                  <ExpandableTextArea
+                      isExpanded={aboutExpandedId === 2}
+                      onExpand={() => handleAboutExpand(2)} text="In 2019 I moved to Edinburgh to attend Heriot-Watt University, where
+                        I graduated at 20 years old with a BSc (+ Honours) Computer Science Degree." expandDirection="right"/>
+                  <ExpandableTextArea className={`text-sm`}
+                      isExpanded={aboutExpandedId === 3}
+                      onExpand={() => handleAboutExpand(3)} text="Towards the end of my degree I was offered a position at Voror Health Technologies and have been working there as
+                        a full stack developer since April 2023. I have been working primarily with Java, Vue.js and MySQL and have progressed from a Junior to a Mid-level developer.
+                        " expandDirection="left"/>
+                  <ExpandableTextArea className={`text-sm`}
+                      isExpanded={aboutExpandedId === 4}
+                      onExpand={() => handleAboutExpand(4)} text="
+                  I currently contribute to the maintenance of the Transform system and am
+                  developing the Record Viewer tool, as the sole Front-end developer, and a contributor to the back-end I have had the chance to give demos both internally and externally,
+                  and make key design decisions." expandDirection="right"/>
+
+              </div>
             </section>
           </Section>
         </div>
         <div id="3">
-          <Section className="min-h-screen bg-gray-800 w-screen flex flex-col lg:flex-row lg:justify-center" title="" content="">
-            <div className="flex flex-col w-screen lg:flex-row">
-              <AnimatedButton selectedProject={selectedProject} label="" className=""/>
-              <div className=" lg:h-screen lg:w-[50vw] flex flex-col justify-start items-center lg:justify-center lg:items-start">
+          <Section className="min-h-screen bg-gray-800 w-screen flex flex-col lg:flex-row lg:justify-center" title=""
+                   content="">
+            <div className={`flex flex-col w-screen items-center lg:flex-row ${isExpanded ? "justify-center" : ""}`}>
+              <AnimatedButton selectedProject={selectedProject} label="" className={``}
+                              onExpanded={handleExpandedChange}/>
+              <div
+                  className={` lg:h-screen lg:w-[50vw] flex flex-col justify-start items-center lg:justify-center lg:items-start ${isExpanded ? "hidden" : ""}`}>
                 <h2 className="lg:text-4xl pb-2 border-b-2 border-slate-600 lg:w-[80%]">Projects</h2>
-                <ul className="w-[80%] text-left">
+                <ul className={`w-[80%] mb-4 text-left`}>
                   {projects.map((item) => (
                       <motion.div
                           key={item.id}
