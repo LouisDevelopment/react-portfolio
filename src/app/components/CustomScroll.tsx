@@ -59,19 +59,15 @@ const CustomScroll: React.FC = () => {
         });
 
         window.addEventListener('resize', handleResize);
+        window.addEventListener('wheel', handleWheel, { passive: false });
 
         // Clean up the event listener on component unmount
         return () => {
             window.removeEventListener('resize', handleResize);
-            // Cleanup observer on unmount
+            window.removeEventListener('wheel', handleWheel);
             observer.disconnect();
         }
-    }, []);
-
-    useEffect(() => {
-        window.addEventListener('wheel', handleWheel, { passive: false });
-        return () => window.removeEventListener('wheel', handleWheel);
-    }, [activeId, handleWheel]);
+    }, [[activeId, handleWheel]]);
 
     return (
         <>
