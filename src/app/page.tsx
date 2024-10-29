@@ -69,7 +69,7 @@ export default function Home() {
   };
 
   const projects = [
-    { id: 1, label: 'Patient Record Viewer', type: "Full-Stack (Team)"},
+    { id: 1, label: 'Patient Record Viewer', type: "Full-Stack (Full-Time Job)"},
     { id: 2, label: 'Portobello Driver Training', type: "Full-Stack (Independent)" },
     { id: 3, label: 'Lost Bonds (Game)', type: "C#/Unity (Independent)" },
     { id: 4, label: 'Survival Game Concept', type: "Java/LWJGL (Independent)" },
@@ -243,9 +243,9 @@ export default function Home() {
           </Section>
         </div>
         <div id="2" className="p-0 m-0">
-          <Section className="h-screen w-screen bg-slate-700 p-0 m-0 -z-10" title="" content="">
-            <section className="h-screen flex flex-col justify-between py-8 pb-16">
-              <div className="h-screen flex flex-col align-middle items-center justify-between">
+          <Section className="min-h-screen w-screen bg-slate-700 p-0 m-0 -z-10" title="" content="">
+            <section className="flex flex-col justify-between py-8 pb-16">
+              <div className="min-h-[86vh] flex flex-col align-middle items-center justify-between">
                   <ExpandableTextArea
                       isExpanded={aboutExpandedId === 0}
                       onExpand={() => handleAboutExpand(0)} text="I grew up in a rural part of Scotland but always loved gaming,
