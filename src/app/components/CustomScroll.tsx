@@ -12,6 +12,7 @@ const CustomScroll: React.FC = () => {
         if (event.ctrlKey) {
             return;
         }
+
         if (isScrolling.current) return; // Prevent multiple calls while scrolling
         if(!isAboveXs) return;
         event.preventDefault();
