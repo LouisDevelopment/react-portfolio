@@ -118,7 +118,7 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ className, selectedProj
                         </div>
                         <div className={`cursor-default ${expanded ? 'flex flex-col lg:w-[50%] h-full p-4' : 'hidden'}`}>
                             <h1 className={`text-3xl font-light`}>{projects[selectedProject-1].title}</h1>
-                            <p className={`text-sm md:text-base lg:text-lg text-left font-light`}>{projects[selectedProject - 1].content.split('<br/>').map((line, index) => (
+                            <p className={`text-sm lg:text-base text-left font-light`}>{projects[selectedProject - 1].content.split('<br/>').map((line, index) => (
                                 <span key={index}>
     {line}
                                     <br/>
