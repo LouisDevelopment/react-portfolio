@@ -274,7 +274,7 @@ export default function Home() {
             </section>
           </Section>
         </div>
-        <div id="3">
+        <div id="3" className="-scroll-mt-1">
           <Section className="min-h-screen bg-gray-800 w-screen flex flex-col lg:flex-row lg:justify-center" title=""
                    content="">
             <div className={`flex flex-col w-screen items-center lg:flex-row ${isExpanded ? "justify-center" : ""}`}>

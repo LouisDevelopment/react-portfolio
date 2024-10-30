@@ -28,7 +28,7 @@ const CustomScroll: React.FC = () => {
                 const nextIndex = (parseInt(activeId) % sections.length);
                 const element = document.getElementById(sections[nextIndex]);
                 if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
+                    element.scrollIntoView({ behavior: 'smooth'});
                 }
             } else {
                 // Scroll up
@@ -36,7 +36,7 @@ const CustomScroll: React.FC = () => {
                 if (previousIndex < 0) previousIndex = sections.length - 1;
                 const element = document.getElementById(sections[previousIndex]);
                 if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
+                    element.scrollIntoView({ behavior: 'smooth'});
                 }
             }
         };

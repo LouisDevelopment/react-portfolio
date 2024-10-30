@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { motion } from 'framer-motion';
 import './AnimatedButton.css'
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 const projects = [
     {
@@ -122,12 +124,19 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ className, selectedProj
             >
 
                 <div className={`w-[100%] h-[100%] text-white overflow-hidden flex flex-row items-center justify-center `}>
-                    <button
+                    <div
                         className={`bg-blue-400 h-[90%] lg:h-[80%] flex-col flex items-center justify-center ${expanded ? 'lg:justify-start' : 'lg:justify-center'} lg:flex-row mb-8 lg:mb-0 text-white font-semibold rounded-3xl overflow-hidden
                     ${expanded ? 'aspect-auto w-[100%]' : 'aspect-square'}`}>
                         <div onClick={() => setExpanded(!expanded)}
                             className={` ${expanded ? 'h-full w-[60%] lg:w-[50%]' : 'h-full lg:w-full '} flex flex-row justify-center items-center align-middle`}>
-                            <img className={`justify-self-center w-[80%]`} src={`${projects[selectedProject-1].imgURLs[0]}`}/>
+                            <Carousel autoPlay infiniteLoop>
+                                {projects[selectedProject-1].imgURLs.map((item) => (
+                                    <div
+                                        key={item}>
+                                        <img src={item} />
+                                    </div>
+                                ))}
+                            </Carousel>
                         </div>
                         <div className={`bg-blue-300 cursor-default ${expanded ? 'flex justify-center flex-col lg:w-[50%] h-full p-4' : 'hidden'}`}>
                             <div className={`flex flex-col justify-center items-center align-middle`}>
@@ -144,7 +153,7 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ className, selectedProj
                                 </div>
                             </div>
                         </div>
-                    </button>
+                    </div>
                 </div>
             </motion.div>
         </div>
