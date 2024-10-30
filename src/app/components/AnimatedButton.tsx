@@ -129,11 +129,11 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ className, selectedProj
                     ${expanded ? 'aspect-auto w-[100%]' : 'aspect-square'}`}>
                         <div onClick={() => setExpanded(!expanded)}
                             className={`cursor-pointer ${expanded ? 'h-full w-[60%] lg:w-[50%]' : 'h-full lg:w-full '} flex flex-row justify-center items-center align-middle`}>
-                            <Carousel className={`max-w-full max-h-full flex flex-col align-middle justify-center items-center`} autoPlay infiniteLoop showIndicators={false} showArrows={false} showThumbs={false} interval={3000}>
+                            <Carousel className={`max-w-full max-h-full flex flex-col align-middle justify-center items-center`} autoPlay infiniteLoop showIndicators={false} >
                                 {projects[selectedProject-1].imgURLs.map((item) => (
                                     <div
                                         key={item}>
-                                        <img className={`max-w-full max-h-full`} src={item} />
+                                        <img src={item} />
                                     </div>
                                 ))}
                             </Carousel>
