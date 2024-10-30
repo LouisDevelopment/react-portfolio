@@ -79,6 +79,12 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ className, selectedProj
         return () => window.removeEventListener("resize", handleResize);
     }, [expanded, onExpanded]);
 
+    const [carouselKey, setCarouselKey] = useState(0); // Key to force re-render
+
+    useEffect(() => {
+        setCarouselKey((prevKey) => prevKey + 1); // Increment key to force reload on selectedProject change
+    }, [selectedProject]);
+
     const animateDiv = () => {
         if(isHovered) {
             if(expanded) {
@@ -129,10 +135,18 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ className, selectedProj
                     ${expanded ? 'aspect-auto w-[100%]' : 'aspect-square'}`}>
                         <div onClick={() => setExpanded(!expanded)}
                             className={`cursor-pointer ${expanded ? 'h-full w-[60%] lg:w-[50%]' : 'h-full lg:w-full '} flex flex-row justify-center items-center align-middle`}>
-                            <Carousel className={`max-w-full max-h-full flex flex-col align-middle justify-center items-center`} autoPlay infiniteLoop showIndicators={false} >
-                                {projects[selectedProject-1].imgURLs.map((item) => (
-                                    <div
-                                        key={item}>
+                            <Carousel
+                                key={carouselKey} // Unique key for re-rendering
+                                className="max-w-full max-h-full flex flex-col align-middle justify-center items-center"
+                                autoPlay
+                                infiniteLoop={true}
+                                interval={3000}
+                                showIndicators={false}
+                                showArrows={false}
+                                showThumbs={false}
+                            >
+                                {projects[selectedProject - 1].imgURLs.map((item) => (
+                                    <div key={item}>
                                         <img src={item} />
                                     </div>
                                 ))}
