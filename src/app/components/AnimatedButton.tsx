@@ -152,7 +152,7 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ className, selectedProj
                                 ))}
                             </Carousel>
                         </div>
-                        <div className={`bg-blue-300 cursor-default ${expanded ? 'flex justify-center flex-col lg:w-[50%] h-full p-4' : 'hidden'}`}>
+                        <div className={`bg-blue-500 cursor-default ${expanded ? 'flex justify-center flex-col lg:w-[50%] h-full p-4' : 'hidden'}`}>
                             <div className={`flex flex-col justify-center items-center align-middle`}>
                                 <h1 className={`text-3xl pb-4 font-light`}>{projects[selectedProject-1].title}</h1>
 
@@ -163,7 +163,7 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ className, selectedProj
                                         <br/>
                                     </span>
                                 ))}
-                                <a className="text-indigo-600 hover:text-indigo-800" href={projects[selectedProject-1].link} target={`_blank`}>{projects[selectedProject-1].link}</a></p>
+                                <a className="text-violet-300 hover:text-indigo-100" href={projects[selectedProject-1].link} target={`_blank`}>{projects[selectedProject-1].link}</a></p>
                                 </div>
                             </div>
                         </div>
