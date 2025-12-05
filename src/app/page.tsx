@@ -67,7 +67,7 @@ export default function Home() {
                 <Subtitle subtitle="Passionate about all things game, software and web development" />
                 <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4 mt-8">
                   <Link
-                      href="/cv.pdf"
+                      href="/CV_Q4_2025_NO_PHONE.pdf"
                       target="_blank"
                       className="select-none inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-full bg-indigo-700 hover:bg-indigo-600 focus:ring-5 focus:ring-indigo-900"
                   >
