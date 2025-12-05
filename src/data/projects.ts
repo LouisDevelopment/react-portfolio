@@ -12,7 +12,7 @@ export const projectsData: Project[] = [
     {
         id: 1,
         title: 'Patient Record Viewer',
-        type: "(2024) Full-Stack (HealthTech)",
+        type: "(2024) Full-Stack (Healthcare Tech)",
         tech: ["Java", "MySQL", "Vue.js 3", "PrimeVue", "TypeScript", "RabbitMQ"],
         images: ['/assets/RecordViewer1.png'], // Keep existing image
         links: [
