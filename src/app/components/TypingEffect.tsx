@@ -23,7 +23,6 @@ export default function TypingEffect({
     const [typingSpeedState, setTypingSpeedState] = useState(typingSpeed);
 
     useEffect(() => {
-        let timer: NodeJS.Timeout;
 
         const handleTyping = () => {
             const i = loopNum % textArray.length;
@@ -47,7 +46,8 @@ export default function TypingEffect({
             }
         };
 
-        timer = setTimeout(handleTyping, typingSpeedState);
+
+        const timer: NodeJS.Timeout = setTimeout(handleTyping, typingSpeedState);
 
         return () => clearTimeout(timer);
     }, [displayedText, isDeleting, loopNum, textArray, typingSpeed, deletingSpeed, pauseTime, typingSpeedState]);
