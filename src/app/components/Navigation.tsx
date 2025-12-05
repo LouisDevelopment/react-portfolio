@@ -5,53 +5,63 @@ interface NavigationProps {
     onNavigate: (id: string) => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({activeId, onNavigate}) => {
+const Navigation: React.FC<NavigationProps> = ({ activeId, onNavigate }) => {
 
-    const NavLink = ({ id, label }: { id: string, label: string }) => (
-        <button
-            onClick={() => onNavigate(id)}
-            className={`
-                relative z-10 cursor-pointer transition-all duration-300 text-xs md:text-sm font-medium
-                lg:px-4 lg:py-2 lg:rounded-full 
-                
-                ${activeId === id
-                ? 'text-indigo-400 font-bold scale-110 lg:bg-white/5 lg:shadow-sm lg:ring-1 lg:ring-white/10 backdrop-blur-sm'
-                : 'text-slate-400 hover:text-white'
-            }
-            `}
-        >
-            {label}
-        </button>
-    );
-
-    const NavIcon = () => (
-        <svg className="hidden lg:block my-2 w-3 h-3 text-slate-700 relative z-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
-            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/>
-        </svg>
-    );
+    const links = [
+        { id: '1', label: 'Home' }, // Renamed from "LANDING" to "Home" for cleaner look
+        { id: '2', label: 'Journey' }, // Renamed "ABOUT" to "Journey" to match your section title
+        { id: '3', label: 'Work' },    // Renamed "PROJECTS" to "Work" to save space
+        { id: '4', label: 'Contact' },
+    ];
 
     return (
-        <nav className="
-            fixed z-50
+        <>
+            <nav className="lg:hidden fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-sm">
+                <div className="flex items-center justify-between px-2 py-2 bg-slate-900/80 backdrop-blur-md border border-slate-700/50 rounded-full shadow-2xl shadow-black/50">
+                    {links.map((link) => (
+                        <button
+                            key={link.id}
+                            onClick={() => onNavigate(link.id)}
+                            className={`
+                                relative px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300
+                                ${activeId === link.id
+                                ? 'text-white bg-indigo-600 shadow-lg shadow-indigo-500/25'
+                                : 'text-slate-400 hover:text-white hover:bg-white/5'
+                            }
+                            `}
+                        >
+                            {link.label}
+                        </button>
+                    ))}
+                </div>
+            </nav>
 
-            top-0 left-0 w-full h-16
-            flex flex-row items-center justify-evenly
-            border-b border-white/10 shadow-lg
+            <nav className="hidden lg:flex fixed right-8 top-1/2 -translate-y-1/2 z-50 flex-col gap-6">
+                {links.map((link) => {
+                    const isActive = activeId === link.id;
+                    return (
+                        <button
+                            key={link.id}
+                            onClick={() => onNavigate(link.id)}
+                            className="group flex items-center justify-end relative pl-8 py-1"
+                        >
 
-            lg:w-32 lg:h-screen lg:flex-col lg:justify-center lg:right-8 lg:left-auto lg:top-0
-            lg:border-none lg:shadow-none
-        ">
+                            <div
+                                className={`
+                                    relative z-10 w-3 h-3 rounded-full border-2 transition-all duration-300
+                                    ${isActive
+                                    ? 'bg-indigo-500 border-indigo-500 scale-125 shadow-[0_0_15px_rgba(99,102,241,0.5)]'
+                                    : 'bg-transparent border-slate-500 group-hover:border-slate-300'
+                                }
+                                `}
+                            />
 
-            <div className="absolute inset-0 bg-slate-900/90 backdrop-blur-md -z-10 lg:hidden" />
-
-            <NavLink id="1" label="LANDING" />
-            <NavIcon />
-            <NavLink id="2" label="ABOUT" />
-            <NavIcon />
-            <NavLink id="3" label="PROJECTS" />
-            <NavIcon />
-            <NavLink id="4" label="CONTACT" />
-        </nav>
+                            <div className={`absolute right-[5px] h-6 w-[1px] -top-6 bg-slate-800 -z-10 ${link.id === '1' ? 'hidden' : 'block'}`} />
+                        </button>
+                    );
+                })}
+            </nav>
+        </>
     );
 };
 
