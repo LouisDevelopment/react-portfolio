@@ -1,9 +1,9 @@
 .animated-text {
     @apply fill-transparent stroke-white font-light mb-4 text-6xl leading-none text-white select-none;
-    stroke-width: 1;
+    stroke-width: 2;
     stroke-dasharray: 2000;
     stroke-dashoffset: 2000;
-    animation: draw 20s ease forwards, fill 1s ease forwards 3s;
+    animation: draw 20s ease forwards, fill 1s ease forwards 2s;
 }
 
 @keyframes draw {
