@@ -85,7 +85,7 @@ export default function BackgroundParticles() {
                     type: "circle",
                 },
                 size: {
-                    value: { min: 1, max: 3 }, // Smaller, sharper particles
+                    value: { min: 1, max: 3 },
                 },
             },
             detectRetina: true,

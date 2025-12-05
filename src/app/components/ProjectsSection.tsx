@@ -87,12 +87,10 @@ const MobileProjectCard = ({ project }: { project: Project }) => {
     );
 };
 
-// --- MAIN COMPONENT ---
 export default function ProjectsSection() {
     const [activeId, setActiveId] = useState<number>(projectsData[0].id);
     const activeProject = projectsData.find((p) => p.id === activeId) || projectsData[0];
 
-    // Parse active project type for Desktop view
     const { year: activeYear, role: activeRole } = parseProjectType(activeProject.type);
 
     return (

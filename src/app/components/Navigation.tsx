@@ -8,9 +8,9 @@ interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({ activeId, onNavigate }) => {
 
     const links = [
-        { id: '1', label: 'Home' }, // Renamed from "LANDING" to "Home" for cleaner look
-        { id: '2', label: 'Journey' }, // Renamed "ABOUT" to "Journey" to match your section title
-        { id: '3', label: 'Work' },    // Renamed "PROJECTS" to "Work" to save space
+        { id: '1', label: 'Home' },
+        { id: '2', label: 'Journey' },
+        { id: '3', label: 'Work' },
         { id: '4', label: 'Contact' },
     ];
 

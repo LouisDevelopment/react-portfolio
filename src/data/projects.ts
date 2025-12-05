@@ -14,7 +14,7 @@ export const projectsData: Project[] = [
         title: 'Patient Record Viewer',
         type: "(2024) Full-Stack (Healthcare Tech)",
         tech: ["Java", "MySQL", "Vue.js 3", "PrimeVue", "TypeScript", "RabbitMQ"],
-        images: ['/assets/RecordViewer1.png'], // Keep existing image
+        images: ['/assets/RecordViewer1.png'],
         links: [
             { label: "View Wiki", url: "https://wiki.voror.co.uk/index.php?title=Record_Viewer" }
         ],
@@ -29,7 +29,7 @@ Key contributions included the full front-end design, implementing HSTS security
         title: 'Data Sharing Manager',
         type: "(2025) Legacy Migration (Angular to Vue)",
         tech: ["Vue.js 3", "Angular 8", "TypeScript", "Cypress", "Cucumber", "CI/CD"],
-        images: ['/assets/RecordViewer1.png'], // **ACTION:** You need a screenshot for this, or re-use a generic dashboard image if NDA applies.
+        images: ['/assets/RecordViewer1.png'],
         links: [
             { label: "View Wiki", url: "https://wiki.voror.co.uk/index.php?title=Data_Sharing_Manager" }],
         description: `A comprehensive architectural overhaul of a legacy medical data system. The project involved migrating a complex Angular 8 codebase to a modern Vue 3 & TypeScript ecosystem to improve maintainability and performance.
