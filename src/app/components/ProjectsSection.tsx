@@ -3,11 +3,9 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Section from './Section';
-import { projectsData, Project } from '@/data/projects'; // Ensure this path matches your structure
+import { projectsData, Project } from '@/data/projects';
 
-// --- HELPER: Parse the type string "(2024) Full-Stack" -> { year: "2024", role: "Full-Stack" } ---
 const parseProjectType = (rawString: string) => {
-    // Matches content inside first parenthesis (group 1) and everything after (group 2)
     const match = rawString.match(/\((.*?)\)\s*(.*)/);
     if (match) {
         return { year: match[1], role: match[2] };
@@ -15,14 +13,12 @@ const parseProjectType = (rawString: string) => {
     return { year: '', role: rawString };
 };
 
-// --- SUB-COMPONENT: Mobile Card (Handles its own "Read More" state) ---
 const MobileProjectCard = ({ project }: { project: Project }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const { year, role } = parseProjectType(project.type);
 
     return (
         <div className="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 shadow-lg flex flex-col">
-            {/* Mobile Image */}
             {project.images && project.images.length > 0 && (
                 <div className="h-48 relative w-full shrink-0">
                     <Image
@@ -35,7 +31,6 @@ const MobileProjectCard = ({ project }: { project: Project }) => {
             )}
 
             <div className="p-6 flex flex-col h-full">
-                {/* Header & Badges */}
                 <div className="mb-4">
                     <h3 className="text-2xl font-bold text-white mb-3">{project.title}</h3>
                     <div className="flex flex-wrap gap-2">
@@ -50,7 +45,6 @@ const MobileProjectCard = ({ project }: { project: Project }) => {
                     </div>
                 </div>
 
-                {/* Description with Read More logic */}
                 <div className={`text-slate-300 text-sm mb-4 transition-all duration-300 relative ${isExpanded ? '' : 'line-clamp-4'}`}>
                     {project.description}
                 </div>
@@ -62,7 +56,6 @@ const MobileProjectCard = ({ project }: { project: Project }) => {
                     {isExpanded ? 'Read Less' : 'Read More...'}
                 </button>
 
-                {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2 mb-6 mt-auto">
                     {project.tech.slice(0, 4).map((t) => (
                         <span key={t} className="text-xs px-2 py-1 bg-slate-900 rounded text-slate-400 border border-slate-800">
@@ -76,7 +69,6 @@ const MobileProjectCard = ({ project }: { project: Project }) => {
                     )}
                 </div>
 
-                {/* Links */}
                 <div className="flex gap-3 mt-auto pt-4 border-t border-slate-700/50">
                     {project.links.map((link, i) => (
                         <a
@@ -108,7 +100,6 @@ export default function ProjectsSection() {
             <Section className="h-full w-full max-w-[1600px] mx-auto" title="" content="">
                 <div className="flex flex-col h-full pt-20 pb-10 px-4 md:px-8 lg:pt-0 lg:pb-0 lg:px-12 lg:flex-row lg:items-center lg:gap-8 xl:gap-16">
 
-                    {/* --- LEFT COLUMN: Header & Project List (Desktop) --- */}
                     <div className="flex flex-col w-full lg:w-1/3 lg:h-[70vh] lg:justify-center z-10">
                         <div className="mb-6 lg:mb-8">
                             <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
@@ -119,7 +110,6 @@ export default function ProjectsSection() {
                             </p>
                         </div>
 
-                        {/* Desktop List */}
                         <div className="hidden lg:flex flex-col gap-3 overflow-y-auto pr-2 custom-scrollbar">
                             {projectsData.map((project) => {
                                 const { year, role } = parseProjectType(project.type);
@@ -137,7 +127,6 @@ export default function ProjectsSection() {
                                             <h3 className={`font-bold text-lg ${activeId === project.id ? 'text-white' : 'text-slate-300 group-hover:text-white'}`}>
                                                 {project.title}
                                             </h3>
-                                            {/* Small Year Badge in List Item */}
                                             {year && (
                                                 <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono ${
                                                     activeId === project.id ? 'bg-indigo-500 text-white' : 'bg-slate-700 text-slate-400'
@@ -155,14 +144,11 @@ export default function ProjectsSection() {
                         </div>
                     </div>
 
-                    {/* --- RIGHT COLUMN: Active Project Detail (Desktop) --- */}
-                    {/* Right Padding (mr-12 xl:mr-24) ensures Right Nav Bar doesn't block content */}
                     <div className="hidden lg:flex w-full lg:w-2/3 h-full lg:h-[70vh] bg-slate-800 rounded-3xl border border-slate-700 overflow-hidden relative shadow-2xl mr-12 xl:mr-24">
 
                         <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-indigo-900/20 to-transparent pointer-events-none" />
 
                         <div className="flex flex-col h-full w-full p-8 xl:p-12 relative z-10">
-                            {/* Desktop Header with Split Badges */}
                             <div className="flex justify-between items-start mb-6">
                                 <div>
                                     <h3 className="text-3xl font-bold text-white mb-3">{activeProject.title}</h3>
@@ -192,7 +178,6 @@ export default function ProjectsSection() {
                                 </div>
                             </div>
 
-                            {/* Scrollable Content */}
                             <div className="flex-1 overflow-y-auto pr-4 custom-scrollbar">
                                 <div className="prose prose-invert prose-slate max-w-none mb-8">
                                     <p className="whitespace-pre-line text-slate-300 leading-relaxed">
@@ -225,7 +210,6 @@ export default function ProjectsSection() {
                         </div>
                     </div>
 
-                    {/* --- MOBILE VIEW (Stacked Cards) --- */}
                     <div className="lg:hidden flex flex-col gap-8 pb-20">
                         {projectsData.map((project) => (
                             <MobileProjectCard key={project.id} project={project} />

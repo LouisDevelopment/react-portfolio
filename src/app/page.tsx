@@ -30,13 +30,13 @@ export default function Home() {
 
   const Card: React.FC<CardProps> = ({ title, footer, children, className = "" }) => {
     return (
-        <div className={`shadow w-[100%] m-4 bg-slate-800 rounded-2xl text-slate-200 ${className}`}>
+        <div className={`shadow-xl w-[100%] m-4 bg-slate-800/50 border border-slate-700 backdrop-blur-sm rounded-3xl text-slate-200 ${className}`}>
           {title && (
-              <div className="pt-2 md:pt-8 md:text-xl">
-                <h2 className={`text-center`}>{title}</h2>
+              <div className="pt-6 md:pt-10 md:text-2xl font-bold pb-4 border-b border-slate-700/50 mx-8">
+                <h2 className={`text-center text-white`}>{title}</h2>
               </div>
           )}
-          <div className="px-2 md:px-8 py-2 md:py-6">
+          <div className="px-6 md:px-12 py-6 md:py-10">
             {children}
           </div>
           {footer && <div className="px-8 pb-6 text-right">{footer}</div>}
@@ -69,13 +69,14 @@ export default function Home() {
                   <Link
                       href="/CV_Q4_2025_NO_PHONE.pdf"
                       target="_blank"
-                      className="select-none inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-full bg-indigo-700 hover:bg-indigo-600 focus:ring-5 focus:ring-indigo-900"
+                      className="select-none inline-flex justify-center items-center py-3 px-8 text-base font-semibold text-center text-white rounded-full bg-indigo-600 hover:bg-indigo-500 transition-all transform hover:-translate-y-0.5 hover:shadow-lg hover:shadow-indigo-500/25 active:scale-95"
                   >
                     My CV
                   </Link>
+
                   <button
                       onClick={scrollToContact}
-                      className="select-none inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 text-base font-medium text-center text-white rounded-full border border-white hover:bg-gray-100 focus:ring-5 focus:ring-indigo-500"
+                      className="select-none inline-flex justify-center items-center py-3 px-8 text-base font-semibold text-center text-white rounded-full bg-slate-800 border border-slate-700 hover:bg-slate-700 hover:border-slate-600 transition-all transform hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-700/50 active:scale-95"
                   >
                     Contact
                   </button>
@@ -87,15 +88,15 @@ export default function Home() {
 
         {/* 2. JOURNEY SECTION */}
         <div id="2" className="bg-slate-900 relative z-10 border-t border-slate-800 min-h-screen lg:h-screen lg:snap-start lg:shrink-0 w-full flex flex-col justify-center">
-          <Section className="h-full 2xl:mx-4 w-full 2xl:w-[90%]" title="" content="">
+          <Section className="h-full px-16 w-full" title="" content="">
             <div className="w-full h-full flex flex-col justify-center items-center">
               <div className="text-center shrink-0">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">My Journey</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">About Me</h2>
                 <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto">
                   From custom game engines to critical healthcare infrastructure.
                 </p>
               </div>
-              <div className="w-full pl-12 pr-48 2xl:px-0 mt-0 mb-20 lg:mb-0">
+              <div className="w-full px-12 2xl:px-0 mt-0 mb-20 lg:mb-0">
                 <CareerTimeline />
               </div>
             </div>
