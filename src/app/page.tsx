@@ -109,7 +109,7 @@ export default function Home() {
         <div id="4" className="min-h-screen lg:h-screen lg:snap-start lg:shrink-0 w-full flex items-center justify-center bg-slate-900 border-t border-slate-800">
           <Section className="w-full" title="" content="">
             <div className="w-full flex items-center justify-center py-20 lg:py-0">
-              <Card className="max-w-[812px]" title="Contact" footer="">
+              <Card className="border border-slate-700 max-w-5xl" title="" footer="">
                 <div ref={contactRef}>
                   <ContactForm />
                 </div>
@@ -117,7 +117,6 @@ export default function Home() {
             </div>
           </Section>
         </div>
-
         <CustomScroll />
       </div>
   );
