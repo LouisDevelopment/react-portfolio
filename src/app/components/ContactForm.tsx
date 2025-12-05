@@ -52,10 +52,10 @@ export default function ContactForm() {
 
             <div className="lg:w-1/3 flex flex-col justify-between">
                 <div>
-                    <h3 className="text-2xl font-bold text-white mb-4">Let's Connect</h3>
+                    <h3 className="text-2xl font-bold text-white mb-4">Let&#39;s Connect</h3>
                     <p className="text-slate-400 leading-relaxed mb-8">
-                        I'm always open to connecting with like-minded people in the field!
-                        Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                        I&#39;m always open to connecting with like-minded people in the field!
+                        Whether you have a question or just want to say hi, I&#39;ll try my best to get back to you!
                     </p>
 
                     <div className="flex flex-col gap-4">
@@ -81,11 +81,9 @@ export default function ContactForm() {
                 </div>
             </div>
 
-            {/* --- RIGHT SIDE: The Form --- */}
             <div className="lg:w-2/3">
                 <form ref={form} onSubmit={sendEmail} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* Name */}
                         <div className="relative group">
                             <input
                                 type="text"
@@ -97,7 +95,6 @@ export default function ContactForm() {
                             />
                         </div>
 
-                        {/* Email */}
                         <div className="relative group">
                             <input
                                 type="email"
@@ -110,7 +107,6 @@ export default function ContactForm() {
                         </div>
                     </div>
 
-                    {/* Message */}
                     <div className="relative group">
                         <textarea
                             name="message"
@@ -121,9 +117,7 @@ export default function ContactForm() {
                         />
                     </div>
 
-                    {/* Submit Button */}
                     <div className="flex items-center justify-between">
-                        {/* Status Message (Left aligned) */}
                         <div className="flex-1">
                             {status === 'error' && (
                                 <p className="text-red-400 text-sm flex items-center gap-2">
@@ -139,7 +133,6 @@ export default function ContactForm() {
                             )}
                         </div>
 
-                        {/* Button (Right aligned) */}
                         <button
                             type="submit"
                             disabled={status === 'sending' || status === 'success'}
