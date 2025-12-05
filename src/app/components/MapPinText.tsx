@@ -5,7 +5,7 @@ import { FiMinus } from 'react-icons/fi';
 
 interface ExpandableTextAreaProps {
     text: string;
-    expandDirection: 'left' | 'right'; // Allows choice of expansion direction
+    expandDirection: 'left' | 'right';
     isExpanded: boolean;
     onExpand: () => void;
     className?: string;
@@ -15,22 +15,18 @@ const ExpandableTextArea: React.FC<ExpandableTextAreaProps> = ({ text, expandDir
                                                                    isExpanded,
                                                                    onExpand, className}) => {
 
-    // Toggle expansion state
-
-    // Animation variants for the text (fade-in effect after expansion)
     const textVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: { delay: 0.55 }, // Delay to match expansion animation
+            transition: { delay: 0.55 },
         },
     };
 
-    // Animation variants for expanding from the origin point
     const containerVariants = {
         initial: {
             width: '50px',
-            height: '50px', // Collapsed size
+            height: '50px',
             minHeight:'50px',
             borderRadius: '50%',
         },
@@ -55,13 +51,11 @@ const ExpandableTextArea: React.FC<ExpandableTextAreaProps> = ({ text, expandDir
                 transformOrigin: expandDirection === 'right' ? 'top left' : 'top right',
             }}
         >
-            {/* Positioned + icon in the corner */}
             <div className="absolute top-3.5 left-3.5">
                 <FiPlus className={`text-white text-2xl ${isExpanded ? 'hidden' : ''}`}/>
                 <FiMinus className={`text-white text-2xl ${isExpanded ? '' : 'hidden'}`}/>
             </div>
 
-            {/* Content to display when expanded */}
             {isExpanded && (
 
                 <motion.div

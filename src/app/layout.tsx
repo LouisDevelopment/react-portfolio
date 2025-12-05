@@ -1,38 +1,28 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Nunito } from "next/font/google";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const nunito = Nunito({
+  subsets: ["latin"],
+  variable: "--font-nunito",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Louis Braidwood",
-  description: "Louis Braidwood's game, software and web development porfolio",
+  description: "Louis Braidwood's game, software and web development portfolio",
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+                                     children,
+                                   }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-    <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    </head>
-    <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <html lang="en" className="scroll-smooth">
+      <body className={`${nunito.variable} font-sans antialiased bg-slate-900 text-slate-200`}>
+      {children}
       </body>
-    </html>
+      </html>
   );
 }

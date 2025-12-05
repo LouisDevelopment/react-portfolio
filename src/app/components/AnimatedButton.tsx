@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { motion } from 'framer-motion';
 import './AnimatedButton.css'
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
 const projects = [
@@ -69,20 +69,18 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ className, selectedProj
 
     useEffect(() => {
         setWindowWidth(window.innerWidth)
-        // Update window width on resize
         const handleResize = () => setWindowWidth(window.innerWidth);
         window.addEventListener("resize", handleResize);
-        // Trigger the callback when `expanded` changes
         if (onExpanded) {
             onExpanded(expanded);
         }
         return () => window.removeEventListener("resize", handleResize);
     }, [expanded, onExpanded]);
 
-    const [carouselKey, setCarouselKey] = useState(0); // Key to force re-render
+    const [carouselKey, setCarouselKey] = useState(0);
 
     useEffect(() => {
-        setCarouselKey((prevKey) => prevKey + 1); // Increment key to force reload on selectedProject change
+        setCarouselKey((prevKey) => prevKey + 1);
     }, [selectedProject]);
 
     const animateDiv = () => {
@@ -136,7 +134,7 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ className, selectedProj
                         <div onClick={() => setExpanded(!expanded)}
                             className={`cursor-pointer ${expanded ? 'h-full w-[60%] lg:w-[50%]' : 'h-full lg:w-full '} flex flex-row justify-center items-center align-middle`}>
                             <Carousel
-                                key={carouselKey} // Unique key for re-rendering
+                                key={carouselKey}
                                 className="max-w-full max-h-full flex flex-col align-middle justify-center items-center"
                                 autoPlay
                                 infiniteLoop={true}

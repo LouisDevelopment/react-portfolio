@@ -6,7 +6,7 @@ interface BouncingSubtitleProps {
 }
 
 const Subtitle: React.FC<BouncingSubtitleProps> = ({ subtitle }) => {
-    const words = subtitle.split(" "); // Split subtitle into individual words
+    const words = subtitle.split(" ");
 
     return (
         <div className="flex justify-center flex-wrap text-center mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">

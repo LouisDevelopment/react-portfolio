@@ -11,7 +11,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text }) => {
             <svg
                 viewBox="0 0 500 100"
                 className="w-4/5 max-w-lg b text-center items-center"
-                style={{backgroundColor: "transparent"}} // Ensure transparency
+                style={{backgroundColor: "transparent"}}
             >
                 <text
                     x="50%"
