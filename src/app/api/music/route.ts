@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
+export const runtime = 'edge';
 
 const LASTFM_API_KEY = process.env.LASTFM_API_KEY;
 const LASTFM_USERNAME = process.env.LASTFM_USERNAME;
@@ -9,7 +10,6 @@ interface LastFmImage {
     '#text': string;
 }
 
-export const runtime = 'edge';
 
 export async function GET() {
     if (!LASTFM_API_KEY || !LASTFM_USERNAME) {
