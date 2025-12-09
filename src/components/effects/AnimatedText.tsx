@@ -2,14 +2,15 @@ import React from 'react';
 
 interface AnimatedTextProps {
     text: string;
+    className?: string;
 }
 
-const AnimatedText: React.FC<AnimatedTextProps> = ({ text }) => {
+const AnimatedText: React.FC<AnimatedTextProps> = ({ text , className = ""}) => {
     return (
-        <div className="text-center items-center flex justify-center">
+        <div className={`text-center items-center flex justify-center ${className}`}>
             <svg
                 viewBox="0 0 500 100"
-                className="w-4/5 max-w-lg block text-center items-center bg-transparent"
+                className="w-full h-auto block text-center items-center bg-transparent"
             >
                 <text
                     x="50%"

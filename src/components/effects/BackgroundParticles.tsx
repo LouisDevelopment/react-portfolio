@@ -22,36 +22,21 @@ export default function BackgroundParticles() {
             background: {
                 color: { value: "transparent" },
             },
-            fpsLimit: 120,
+            fpsLimit: 60,
             interactivity: {
                 events: {
-                    onClick: {
-                        enable: true,
-                        mode: "push",
-                    },
-                    onHover: {
-                        enable: true,
-                        mode: "grab",
-                    },
+                    onClick: { enable: true, mode: "push" },
+                    onHover: { enable: true, mode: "grab" },
                 },
                 modes: {
-                    push: {
-                        quantity: 4,
-                    },
-                    grab: {
-                        distance: 140,
-                        links: {
-                            opacity: 1,
-                        },
-                    },
+                    push: { quantity: 4 },
+                    grab: { distance: 140, links: { opacity: 1 } },
                 },
             },
             particles: {
-                color: {
-                    value: ["#6366f1", "#a78bfa", "#ffffff"],
-                },
+                color: { value: ["#6366f1", "#a78bfa", "#ffffff"] },
                 links: {
-                    color: "#6366f1", // Indigo-500
+                    color: "#6366f1",
                     distance: 150,
                     enable: true,
                     opacity: 0.3,
@@ -60,33 +45,21 @@ export default function BackgroundParticles() {
                 move: {
                     direction: MoveDirection.none,
                     enable: true,
-                    outModes: {
-                        default: OutMode.bounce,
-                    },
+                    outModes: { default: OutMode.bounce },
                     random: false,
                     speed: 1,
                     straight: false,
                 },
                 number: {
-                    density: {
-                        enable: true,
-                    },
-                    value: 100,
+                    density: { enable: true },
+                    value: 200,
                 },
                 opacity: {
                     value: { min: 0.3, max: 0.7 },
-                    animation: {
-                        enable: true,
-                        speed: 1,
-                        sync: false,
-                    },
+                    animation: { enable: true, speed: 1, sync: false },
                 },
-                shape: {
-                    type: "circle",
-                },
-                size: {
-                    value: { min: 1, max: 3 },
-                },
+                shape: { type: "circle" },
+                size: { value: { min: 1, max: 3 } },
             },
             detectRetina: true,
         }),
@@ -98,7 +71,7 @@ export default function BackgroundParticles() {
     return (
         <Particles
             id="tsparticles"
-            className="absolute left-0 top-0 h-full w-full z-0 pointer-events-none" // pointer-events-none ensures it doesn't block clicks unless you specifically want interaction
+            className="absolute inset-0 h-full w-full z-0 pointer-events-none"
             options={options}
         />
     );

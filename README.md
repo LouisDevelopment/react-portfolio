@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# **Louis Braidwood | Portfolio**
 
-## Getting Started
+A strictly typed portfolio built with Next.js 15+ (App Router). Designed to demonstrate full-stack capabilities, serverless architecture, and modern component design patterns.
 
-First, run the development server:
+## **Key Features**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### **1\. Serverless API Integrations (Edge-Ready)**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Instead of relying on heavy client-side fetching or exposed API keys, this project uses **Next.js API Routes** to act as secure serverless proxies.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* **Last.fm Integration:** Fetches real-time "Now Playing" data via a robust server-side handler that sanitizes the response and handles image fallbacks for non-standard tracks.  
+* **GitHub Activity:** Polling system that retrieves the latest PushEvent from the public GitHub API to display live commit history.  
+* **Smart Caching:** Both endpoints implement Cache-Control headers and Next.js revalidate strategies to minimize API quota usage while keeping data fresh.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **2\. Performance & Polish**
 
-## Learn More
+* **Glassmorphism:** implemented via a hybrid of Tailwind utilities and inline styles for cross-browser backdrop-filter support (fixing Safari/Webkit issues).  
+* **Optimized Particles:** Uses tsparticles with fixed positioning to prevent layout trashing during scroll events.  
+* **Strict TypeScript:** No any. All API responses and component props are strictly typed with interfaces (e.g., GitHubEvent, LastFmImage).
 
-To learn more about Next.js, take a look at the following resources:
+## **Tech Stack**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* **Framework:** Next.js 15 (App Router)  
+* **Language:** TypeScript  
+* **Styling:** Tailwind CSS + Framer Motion
+* **Data Fetching:** SWR (Stale-While-Revalidate)  
+* **Deployment:** Cloudflare Pages (Static export + Edge Functions)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## **Local Development**
 
-## Deploy on Vercel
+1. **Clone the repository**  
+   git clone [https://github.com/LouisDevelopment/react-portfolio.git\](https://github.com/LouisDevelopment/react-portfolio.git)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Install dependencies**  
+   npm install
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Environment Setup  
+   Create a .env.local file in the root directory:  
+   \# Last.fm Integration  
+   LASTFM_API_KEY=your_api_key  
+   LASTFM_USERNAME=your_username
+
+   \# GitHub Integration  
+   GITHUB_USERNAME=your_username  
+   GITHUB_TOKEN=your_personal_access_token # Optional, prevents rate limiting
+
+4. **Start the dev server**  
+   npm run dev
+
+## **License**
+
+This project is open source and available under the MIT License.  
+*Built by Louis Braidwood. Deployed on Cloudflare Pages.*
