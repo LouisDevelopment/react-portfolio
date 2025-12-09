@@ -19,6 +19,8 @@ interface GitHubEvent {
     };
 }
 
+export const runtime = 'edge';
+
 export async function GET() {
     if (!GITHUB_USERNAME) {
         console.error("GITHUB_USERNAME is missing from .env.local");

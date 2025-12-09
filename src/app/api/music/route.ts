@@ -8,6 +8,8 @@ interface LastFmImage {
     '#text': string;
 }
 
+export const runtime = 'edge';
+
 export async function GET() {
     // 1. Debug: Check if Env Vars are loaded
     if (!LASTFM_API_KEY || !LASTFM_USERNAME) {
