@@ -58,24 +58,24 @@ export default function ContactForm() {
                         Whether you have a question or just want to say hi, I&#39;ll try my best to get back to you!
                     </p>
 
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-row md:flex-col gap-4">
                         <a href="mailto:louis@teamvertex.co.uk" className="flex items-center gap-3 text-slate-300 hover:text-indigo-400 transition-colors group">
                             <div className="p-2 bg-slate-800 rounded-lg group-hover:bg-slate-700 transition-colors border border-slate-700">
                                 <Icons.Mail />
                             </div>
-                            <span className="text-sm font-medium">louis@teamvertex.co.uk</span>
+                            <span className="hidden md:flex text-sm font-medium">louis@teamvertex.co.uk</span>
                         </a>
                         <a href="https://github.com/LouisDevelopment" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-slate-300 hover:text-indigo-400 transition-colors group">
                             <div className="p-2 bg-slate-800 rounded-lg group-hover:bg-slate-700 transition-colors border border-slate-700">
                                 <Icons.GitHub />
                             </div>
-                            <span className="text-sm font-medium">Follow on GitHub</span>
+                            <span className="hidden md:flex text-sm font-medium">Follow on GitHub</span>
                         </a>
                         <a href="https://www.linkedin.com/in/louis-braidwood-3ba680195/" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-slate-300 hover:text-indigo-400 transition-colors group">
                             <div className="p-2 bg-slate-800 rounded-lg group-hover:bg-slate-700 transition-colors border border-slate-700">
                                 <Icons.LinkedIn />
                             </div>
-                            <span className="text-sm font-medium">Connect on LinkedIn</span>
+                            <span className="hidden md:flex text-sm font-medium">Connect on LinkedIn</span>
                         </a>
                     </div>
                 </div>

@@ -1,6 +1,5 @@
 import React from "react";
 
-// CHANGED: Exported interface for reusability
 export interface CardProps {
     title?: string;
     footer?: string;
@@ -8,7 +7,6 @@ export interface CardProps {
     className?: string;
 }
 
-// CHANGED: Extracted component to separate file
 export const Card: React.FC<CardProps> = ({ title, footer, children, className = "" }) => {
     return (
         <div className={`shadow-xl w-[100%] m-4 bg-slate-800/50 border border-slate-700 backdrop-blur-sm rounded-3xl text-slate-200 ${className}`}>

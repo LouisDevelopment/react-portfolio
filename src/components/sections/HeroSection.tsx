@@ -39,7 +39,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onContactClick }) => {
                             textArray={['Full Stack', 'Vue', 'React', 'Java', 'Unity']}
                             className="text-indigo-500 py-1 md:py-0"
                         />
-                        <span className="md:ml-3">Developer</span>
+                        <span className="ml-3">Developer</span>
                     </div>
 
                     <div className="mt-4 px-2">

@@ -55,7 +55,7 @@ export default function TypingEffect({
     return (
         <span className={`inline-flex items-center h-[4rem] ${className}`}>
       <span>{displayedText}</span>
-      <span className="cursor ml-2 w-2 h-[3rem] bg-indigo-500 rounded animate-pulse inline-block align-middle" />
+      <span className="cursor ml-2 w-1 md:w-2 h-[2rem] md:h-[3rem] bg-indigo-500 rounded animate-pulse inline-block align-middle" />
     </span>
     );
 }
