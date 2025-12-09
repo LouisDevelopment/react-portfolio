@@ -42,7 +42,7 @@ Instead of relying on heavy client-side fetching or exposed API keys, this proje
 
    \# GitHub Integration  
    GITHUB_USERNAME=your_username  
-   GITHUB_TOKEN=your_personal_access_token # Optional, prevents rate limiting
+   GITHUB_TOKEN=your_personal_access_token # Optional
 
 4. **Start the dev server**  
    npm run dev
