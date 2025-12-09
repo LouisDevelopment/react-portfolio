@@ -21,9 +21,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onContactClick }) => {
                 <BackgroundParticles />
             </div>
 
-            <div className="absolute top-4 right-4 md:top-8 md:right-8 z-50">
-                <div className="scale-75 origin-top-right md:scale-100 transition-transform">
-                    <ActivityWidget />
+            <div className="fixed bottom-6 left-4 z-50 md:absolute md:top-8 md:right-8 md:bottom-auto md:left-auto">
+                <div className="origin-bottom-left md:origin-top-right transition-transform">
+                    <ActivityWidget/>
                 </div>
             </div>
 

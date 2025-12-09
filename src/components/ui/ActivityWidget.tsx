@@ -1,7 +1,7 @@
 'use client';
 
 import useSWR from 'swr';
-import { FaMusic, FaGitAlt } from "react-icons/fa";
+import {FaMusic, FaGithub} from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { formatDistanceToNow } from 'date-fns';
 
@@ -51,7 +51,6 @@ const MusicCard = () => {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-[#141417] rounded-full" />
             </div>
 
-            {/* Added max-w constraint to prevent widget from growing too wide on mobile */}
             <div className="flex flex-col overflow-hidden max-w-[120px] sm:max-w-[140px]">
                 <span className="text-xs font-bold text-slate-200 truncate group-hover:text-[#1DB954] transition-colors">
                     {data.title}
@@ -90,15 +89,14 @@ const GithubCard = () => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 20, scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className={`flex items-center gap-3 px-3 py-2 mt-2 group hover:scale-105 hover:border-white/20 ${baseClasses}`}
+                className={`flex items-center gap-3 px-3 py-2 mt-2 md:mt-6 group hover:scale-105 hover:border-white/20 ${baseClasses}`}
                 style={glassStyle}
             >
                 <div className="flex items-center justify-center w-8 h-8 rounded-full bg-black/40 border border-white/5 shrink-0">
-                    <FaGitAlt className="text-orange-500 text-sm" />
+                    <FaGithub className="text-slate-300 text-sm" />
                 </div>
 
-                {/* Added max-w constraint here too */}
-                <div className="flex flex-col max-w-[140px] sm:max-w-[160px]">
+                <div className="flex flex-col max-w-[160px]">
                     <span className="text-[10px] font-medium text-slate-400 flex items-center gap-1">
                          <span className="text-indigo-400 truncate max-w-[80px]">{data.repo}</span>
                          <span>•</span>
@@ -115,7 +113,7 @@ const GithubCard = () => {
 
 export const ActivityWidget = () => {
     return (
-        <div className="flex flex-col items-end">
+        <div className="flex flex-col items-start md:items-end">
             <MusicWidget />
             <GithubWidget />
         </div>
