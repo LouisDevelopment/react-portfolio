@@ -15,6 +15,18 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      keyframes: {
+        draw: {
+          'to': { strokeDashoffset: '0' },
+        },
+        fill: {
+          'from': { fill: 'transparent' },
+          'to': { fill: 'white' },
+        },
+      },
+      animation: {
+        'text-reveal': 'draw 20s ease forwards, fill 1s ease forwards 2s',
+      },
     },
   },
   plugins: [],

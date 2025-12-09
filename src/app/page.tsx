@@ -1,124 +1,49 @@
 'use client';
 
 import React, { useRef } from "react";
-import Link from "next/link";
-
-import AnimatedText from './components/AnimatedText';
-import Subtitle from './components/Subtitle';
-import Section from './components/Section';
-import CustomScroll from "@/app/components/CustomScroll";
-import ContactForm from "@/app/components/ContactForm";
-import BackgroundParticles from "@/app/components/BackgroundParticles";
-import TypingEffect from "@/app/components/TypingEffect";
-import CareerTimeline from "@/app/components/CareerTimeline";
-import ProjectsSection from "@/app/components/ProjectsSection";
+import {AboutSection} from "@/components/sections/AboutSection";
+import {HeroSection} from "@/components/sections/HeroSection";
+import ProjectsSection from "@/components/sections/ProjectsSection";
+import {Card} from "@/components/ui/Card";
+import ContactForm from "@/components/ui/ContactForm";
+import Section from "@/components/sections/Section";
+import CustomScroll from "@/components/ui/CustomScroll";
 
 export default function Home() {
-  const contactRef = useRef<HTMLDivElement | null>(null);
+  const contactRef = useRef<HTMLElement | null>(null);
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('4');
-    contactSection?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  interface CardProps {
-    title: string;
-    footer: string;
-    children: React.ReactNode;
-    className?: string;
-  }
-
-  const Card: React.FC<CardProps> = ({ title, footer, children, className = "" }) => {
-    return (
-        <div className={`shadow-xl w-[100%] m-4 bg-slate-800/50 border border-slate-700 backdrop-blur-sm rounded-3xl text-slate-200 ${className}`}>
-          {title && (
-              <div className="pt-6 md:pt-10 md:text-2xl font-bold pb-4 border-b border-slate-700/50 mx-8">
-                <h2 className={`text-center text-white`}>{title}</h2>
-              </div>
-          )}
-          <div className="px-6 md:px-12 py-6 md:py-10">
-            {children}
-          </div>
-          {footer && <div className="px-8 pb-6 text-right">{footer}</div>}
-        </div>
-    );
+    contactRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-      <div className="w-full bg-gray-900 h-screen overflow-y-scroll overflow-x-hidden lg:snap-y lg:snap-mandatory scroll-smooth">
+      <main className="w-full bg-gray-900 h-screen overflow-y-scroll overflow-x-hidden lg:snap-y lg:snap-mandatory scroll-smooth">
 
-        {/* 1. LANDING SECTION */}
-        <div id="1" className="relative min-h-screen lg:h-screen lg:snap-start lg:shrink-0 w-full">
-          <Section className="h-full w-full" title="" content="">
-            <section className="bg-center h-full flex flex-col justify-center items-center relative w-full">
-              <div className="absolute inset-0 pointer-events-none">
-                <BackgroundParticles />
-              </div>
-              <div className="z-10 w-full px-4 pt-20 lg:pt-0 text-center pointer-events-auto">
-                <AnimatedText text="Louis Braidwood" />
-                <div className="flex justify-center items-center text-slate-300 text-2xl md:text-5xl mt-4 font-bold">
-                  <span className="mr-3">Your</span>
-                  <TypingEffect
-                      textArray={['Full Stack', 'Vue', 'React', 'Java', 'Unity']}
-                      className="text-indigo-500"
-                  />
-                  <span className="ml-3">Developer</span>
-                </div>
-                <Subtitle subtitle="Passionate about all things game, software and web development" />
-                <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4 mt-8">
-                  <Link
-                      href="/CV_Q4_2025_NO_PHONE.pdf"
-                      target="_blank"
-                      className="select-none inline-flex justify-center items-center py-3 px-8 text-base font-semibold text-center text-white rounded-full bg-indigo-600 hover:bg-indigo-500 transition-all transform hover:-translate-y-0.5 hover:shadow-lg hover:shadow-indigo-500/25 active:scale-95"
-                  >
-                    My CV
-                  </Link>
+        {/* 1. HERO */}
+        <HeroSection onContactClick={scrollToContact} />
 
-                  <button
-                      onClick={scrollToContact}
-                      className="select-none inline-flex justify-center items-center py-3 px-8 text-base font-semibold text-center text-white rounded-full bg-slate-800 border border-slate-700 hover:bg-slate-700 hover:border-slate-600 transition-all transform hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-700/50 active:scale-95"
-                  >
-                    Contact
-                  </button>
-                </div>
-              </div>
-            </section>
-          </Section>
-        </div>
+        {/* 2. ABOUT */}
+        <AboutSection />
 
-        {/* 2. JOURNEY SECTION */}
-        <div id="2" className="bg-slate-900 relative z-10 border-t border-slate-800 min-h-screen lg:h-screen lg:snap-start lg:shrink-0 w-full flex flex-col justify-center">
-          <Section className="h-full px-16 w-full" title="" content="">
-            <div className="w-full h-full flex flex-col justify-center items-center">
-              <div className="text-center shrink-0">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">About Me</h2>
-                <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto">
-                  From custom game engines to critical healthcare infrastructure.
-                </p>
-              </div>
-              <div className="w-full px-12 2xl:px-0 mt-0 mb-20 lg:mb-0">
-                <CareerTimeline />
-              </div>
-            </div>
-          </Section>
-        </div>
-
-        {/* 3. PROJECT SECTION */}
+        {/* 3. PROJECTS */}
         <ProjectsSection />
 
-        {/* 4. CONTACT SECTION */}
-        <div id="4" className="min-h-screen lg:h-screen lg:snap-start lg:shrink-0 w-full flex items-center justify-center bg-slate-900 border-t border-slate-800">
+        {/* 4. CONTACT */}
+        <section
+            id="4"
+            ref={contactRef}
+            className="min-h-screen lg:h-screen lg:snap-start lg:shrink-0 w-full flex items-center justify-center bg-slate-900 border-t border-slate-800"
+        >
           <Section className="w-full" title="" content="">
             <div className="w-full flex items-center justify-center py-20 lg:py-0">
               <Card className="border border-slate-700 max-w-5xl" title="" footer="">
-                <div ref={contactRef}>
-                  <ContactForm />
-                </div>
+                <ContactForm />
               </Card>
             </div>
           </Section>
-        </div>
+        </section>
+
         <CustomScroll />
-      </div>
+      </main>
   );
 }
