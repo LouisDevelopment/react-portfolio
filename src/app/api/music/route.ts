@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
+
 const LASTFM_API_KEY = process.env.LASTFM_API_KEY;
 const LASTFM_USERNAME = process.env.LASTFM_USERNAME;
 
@@ -11,7 +12,6 @@ interface LastFmImage {
 export const runtime = 'edge';
 
 export async function GET() {
-    // 1. Debug: Check if Env Vars are loaded
     if (!LASTFM_API_KEY || !LASTFM_USERNAME) {
         console.error("Missing Env Vars. Check .env.local file.");
         return NextResponse.json({ isPlaying: false, error: "Configuration Error" }, { status: 500 });
