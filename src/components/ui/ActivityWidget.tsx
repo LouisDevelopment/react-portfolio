@@ -71,7 +71,7 @@ const MusicCard = () => {
 
 const GithubCard = () => {
     const { data, error } = useSWR('/api/github', fetcher, {
-        refreshInterval: 60000
+        refreshInterval: 30000
     });
 
     if (error || !data?.hasCommit) {

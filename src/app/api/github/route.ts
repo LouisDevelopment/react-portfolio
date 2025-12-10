@@ -28,7 +28,7 @@ export async function GET() {
 
     const headers: HeadersInit = {
         'Accept': 'application/vnd.github.v3+json',
-        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=30',
+        'Cache-Control': 'public, max-age=0, s-maxage=60, stale-while-revalidate=30',
     };
 
     if (GITHUB_TOKEN) {
@@ -36,7 +36,7 @@ export async function GET() {
     }
 
     try {
-        const response = await fetch(url, { headers, next: { revalidate: 60 } });
+        const response = await fetch(url, { headers, next: { revalidate: 0 } });
 
         if (!response.ok) {
             console.error(`GitHub API Error: ${response.status}`);
@@ -44,7 +44,6 @@ export async function GET() {
         }
 
         const events = (await response.json()) as GitHubEvent[];
-
         if (!Array.isArray(events)) {
             return NextResponse.json({ hasCommit: false });
         }
