@@ -52,7 +52,7 @@ export default function BackgroundParticles() {
                 },
                 number: {
                     density: { enable: true },
-                    value: 200,
+                    value: 140,
                 },
                 opacity: {
                     value: { min: 0.3, max: 0.7 },

@@ -39,7 +39,7 @@ const MusicCard = () => {
             href={data.songUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex items-center gap-3 pr-4 pl-2 py-2 group hover:scale-105 hover:border-white/20 ${baseClasses}`}
+            className={`flex items-center gap-3 pr-4 pl-2 py-2 mt-4 group hover:scale-105 hover:border-white/20 ${baseClasses}`}
             style={glassStyle}
         >
             <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 border border-white/10 shadow-sm">
@@ -89,7 +89,7 @@ const GithubCard = () => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 20, scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className={`flex items-center gap-3 px-3 py-2 mt-2 md:mt-6 group hover:scale-105 hover:border-white/20 ${baseClasses}`}
+                className={`flex items-center gap-3 px-3 py-2 mt-4 group hover:scale-105 hover:border-white/20 ${baseClasses}`}
                 style={glassStyle}
             >
                 <div className="flex items-center justify-center w-8 h-8 rounded-full bg-black/40 border border-white/5 shrink-0">
@@ -113,7 +113,7 @@ const GithubCard = () => {
 
 export const ActivityWidget = () => {
     return (
-        <div className="flex flex-col items-start md:items-end">
+        <div className="flex flex-col md:flex-col-reverse items-start md:items-end">
             <MusicWidget />
             <GithubWidget />
         </div>

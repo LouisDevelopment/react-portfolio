@@ -21,14 +21,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onContactClick }) => {
                 <BackgroundParticles />
             </div>
 
-            <div className="fixed bottom-6 left-4 z-50 md:absolute md:top-8 md:right-8 md:bottom-auto md:left-auto">
+            <div className="fixed bottom-6 left-4 z-50 md:absolute md:top-4 md:right-8 md:bottom-auto md:left-auto">
                 <div className="origin-bottom-left md:origin-top-right transition-transform">
                     <ActivityWidget/>
                 </div>
             </div>
 
-            <Section className="h-full w-full flex-grow flex items-center justify-center" title="" content="">
-                <div className="z-10 w-full h-full flex flex-col items-center justify-center text-center px-4">
+            <Section className="z-10 h-full w-full flex-grow flex items-center justify-center" title="" content="">
+                <div className="w-full h-full flex flex-col items-center justify-center text-center px-4">
 
                     <AnimatedText className="z-10 w-full max-w-lg md:max-w-xl" text="Louis Braidwood"/>
 
@@ -49,7 +49,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onContactClick }) => {
                     <div
                         className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mt-8 w-full sm:w-auto px-6 sm:px-0">
                         <Link
-                            href="/CV_Q4_2025_NO_PHONE.pdf"
+                            href="/CV_Q4_2025.pdf"
                             target="_blank"
                             className="select-none inline-flex justify-center items-center py-3 px-8 text-sm md:text-base font-semibold text-center text-white rounded-full bg-indigo-600 hover:bg-indigo-500 transition-all transform hover:-translate-y-0.5 hover:shadow-lg hover:shadow-indigo-500/25 active:scale-95 w-full sm:w-auto"
                         >
