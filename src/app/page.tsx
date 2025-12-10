@@ -3,8 +3,8 @@
 import React, { useRef } from "react";
 import {AboutSection} from "@/components/sections/AboutSection";
 import {HeroSection} from "@/components/sections/HeroSection";
+import {ContactCard} from "@/components/ui/ContactCard";
 import ProjectsSection from "@/components/sections/ProjectsSection";
-import {Card} from "@/components/ui/Card";
 import ContactForm from "@/components/ui/ContactForm";
 import Section from "@/components/sections/Section";
 import CustomScroll from "@/components/ui/CustomScroll";
@@ -36,9 +36,9 @@ export default function Home() {
         >
           <Section className="w-full" title="" content="">
             <div className="w-full flex items-center justify-center py-20 lg:py-0">
-              <Card className="border border-slate-700 max-w-5xl" title="" footer="">
+              <ContactCard className="border border-slate-700 max-w-5xl" title="" footer="">
                 <ContactForm />
-              </Card>
+              </ContactCard>
             </div>
           </Section>
         </section>

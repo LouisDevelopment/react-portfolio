@@ -7,7 +7,7 @@ export interface CardProps {
     className?: string;
 }
 
-export const Card: React.FC<CardProps> = ({ title, footer, children, className = "" }) => {
+export const ContactCard: React.FC<CardProps> = ({ title, footer, children, className = "" }) => {
     return (
         <div className={`shadow-xl w-[100%] m-4 bg-slate-800/50 border border-slate-700 backdrop-blur-sm rounded-3xl text-slate-200 ${className}`}>
             {title && (
