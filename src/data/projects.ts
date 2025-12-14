@@ -11,18 +11,19 @@ export type Project = {
 export const projectsData: Project[] = [
     {
         id: 1,
-        title: 'Patient Record Viewer',
-        type: "(2024) Full-Stack (Healthcare Tech)",
-        tech: ["Java", "MySQL", "Vue.js 3", "PrimeVue", "TypeScript", "RabbitMQ"],
-        images: ['/assets/images/RecordViewer1.png'],
-        links: [
-            { label: "View Wiki", url: "https://wiki.voror.co.uk/index.php?title=Record_Viewer" }
+        title: 'Advent of Code 2024',
+        type: "(2024) WebAssembly Integration (Rust/React)",
+        tech: ["React", "TypeScript", "Rust", "CI/CD", "WASM"],
+        images: [
+            '/assets/images/AOC-2024.png'
         ],
-        description: `A high-impact clinical tool designed to optimize the "Cost of a Click" for healthcare professionals. This system provides insight into 38 million patient records across 850 GP practices.
-
-I served as the Lead Developer, handling the full stack from high-throughput Java ingestion pipelines to the Vue.js frontend. The tool simplifies the user journey for clinicians, projected to save the sector £10 million annually in administrative time.
-
-Key contributions included the full front-end design, implementing HSTS security filters for patient data compliance and giving both internal and external demos.`
+        links: [
+            { label: "Visit site", url: "https://aoc2024.louisbraidwood.co.uk" }
+        ],
+        description: `A dedicated solution runner for the Advent of Code 2024 challenges, designed to demonstrate interoperability between a 
+        modern frontend and a systems-level language. I wrote the core algorithmic logic in Rust and compiled it to WebAssembly (Wasm), enabling the application 
+        to execute complex solutions with near-native performance directly in the browser. This project serves as a technical showcase for bridging the gap 
+        between React and Rust and handling cross-boundary type safety without relying on server-side processing.`
     },
     {
         id: 2,
@@ -41,7 +42,7 @@ This project tested my ability to navigate technical debt and modernize enterpri
     {
         id: 3,
         title: 'Portobello Driver Training',
-        type: "(2024) Commercial Web Application",
+        type: "(2024) Commercial Web Application (VUE/Docker)",
         tech: ["Vue.js", "Docker", "Google Places API", "SEO", "PrimeVue"],
         images: [
             '/assets/images/PortobelloDriverTraining1.png',
@@ -59,6 +60,21 @@ The results were immediate and measurable: the client saw a 100% year-on-year in
     },
     {
         id: 4,
+        title: 'Patient Record Viewer',
+        type: "(2024) Full-Stack (Healthcare Tech)",
+        tech: ["Java", "MySQL", "Vue.js 3", "PrimeVue", "TypeScript", "RabbitMQ"],
+        images: ['/assets/images/RecordViewer1.png'],
+        links: [
+            { label: "View Wiki", url: "https://wiki.voror.co.uk/index.php?title=Record_Viewer" }
+        ],
+        description: `A high-impact clinical tool designed to optimize the "Cost of a Click" for healthcare professionals. This system provides insight into 38 million patient records across 850 GP practices.
+
+I served as the Lead Developer, handling the full stack from high-throughput Java ingestion pipelines to the Vue.js frontend. The tool simplifies the user journey for clinicians, projected to save the sector £10 million annually in administrative time.
+
+Key contributions included the full front-end design, implementing HSTS security filters for patient data compliance and giving both internal and external demos.`
+    },
+    {
+        id: 5,
         title: 'Squishy / High-Fidelity Softbody',
         type: "(2025-2026) Systems Engineering (C#)",
         tech: ["Unity", "C#", "HLSL Shaders", "Mobile", "Memory Management", "URP"],
@@ -69,22 +85,5 @@ The results were immediate and measurable: the client saw a 100% year-on-year in
 I wrote custom HLSL vertex and fragment shaders to achieve specific visuals without the performance overhead of standard rendering paths. I also utilized Unity's Universal Render Pipeline (URP) workflow to maintain a steady 60 FPS on mobile devices.
 
 The project requires strict memory budgeting and touch-input architecture, demonstrating proficiency in C# outside of standard web contexts. Set to release Q1 2026.`
-    },
-    {
-        id: 5,
-        title: 'Draw Dojo',
-        type: "(2022) Frontend (React/Canvas)",
-        tech: ["React", "TypeScript", "Complex State"],
-        images: [
-            '/assets/images/DrawDojo1.png',
-            '/assets/images/DrawDojo2.png',
-            '/assets/images/DrawDojo3.png'
-        ],
-        links: [
-            { label: "View on GitHub", url: "https://github.com/artcollab/ui/tree/master" }
-        ],
-        description: `A collaborative social platform built with React and TypeScript. This project challenged me to manage complex, highly interactive state in a team environment.
-
-Key features included a custom drawing engine allowing users to "remix" other users' posts—layering new canvas data on top of existing arrays. This required careful handling of data structures to ensure performant rendering in the browser.`
     }
 ];
